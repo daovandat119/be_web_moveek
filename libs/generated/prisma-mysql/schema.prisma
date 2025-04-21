@@ -1,0 +1,40 @@
+datasource db {
+  provider = "mysql"
+  url      = env("MYSQL_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../generated/prisma-mysql"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Status {
+  ACTIVE
+  INACTIVE
+}
+
+model User {
+  id            Int       @id @default(autoincrement())
+  username      String    @unique
+  email         String    @unique
+  emailVerified Boolean   @default(false) @map("email_verified")
+  phone         String?   @unique
+  phoneVerified Boolean   @default(false) @map("phone_verified")
+  fullName      String?   @map("full_name")
+  region        String?
+  avatar        String?
+  balance       Int       @default(0)
+  password      String
+  refreshToken  String?   @map("refresh_token")
+  codeId        String?   @map("code_id")
+  codeExpired   DateTime? @map("code_expired")
+  role          Role      @default(USER)
+  status        Status    @default(INACTIVE)
+  createdAt     DateTime  @default(now()) @map("created_at")
+  updatedAt     DateTime  @updatedAt @map("updated_at")
+}

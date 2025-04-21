@@ -1,0 +1,90 @@
+# Nestjs
+    - Tạo project NestJS mới	
+    nest new project-name
+
+    - Tạo module mới	
+    nest g module users
+
+    - Tạo controller mới	
+    nest g controller users
+
+    - Tạo service mới	
+    nest g service users
+
+    - Tạo class (DTO, entity...)	
+    nest g class users/dto/create-user.dto
+
+    - Tạo interface	nest g 
+    interface users/interfaces/user.interface
+
+    - Tạo guard	nest g 
+    guard auth
+
+    - Tạo interceptor	
+    nest g interceptor logging
+
+    - Tạo pipe	
+    nest g pipe validation
+
+    - Tạo middleware	
+    nest g middleware logger
+
+# Docker 
+    - khởi tạo docker bằng docker-compose.yml
+    - lệnh run docker : docker compose up -d 
+    - lệnh xoá toàn bộ container của docker : docker compose down -v
+    - xem các thành phần đã khởi tạo trong docker : docker compose config -service
+
+# Monorepo
+    - chú ý các đường dẫn dist ở trong file tsconfig.buil.json & tsconfig.json
+
+# Prisma
+    # Schema
+        - Dùng khi bắt đầu project mới
+        npx prisma init
+
+        - Sinh Prisma Client từ file 
+        npx prisma generate
+
+        - Đẩy cấu trúc models từ schema.prisma vào database 
+        npx prisma db push
+
+        - Tạo migration file, apply vào DB, và sinh Prisma 
+        npx prisma migrate dev --name init
+
+        - Xoá toàn bộ dữ liệu DB, apply lại tất cả migration từ đầu, và chạy seed
+        npx prisma migrate reset
+
+    # Seed
+        - Cấu hình package.json ở trên devDependencies và chạy lệnh npm install -D ts-node
+        "prisma": {
+            "seed": "ts-node ./libs/db/prisma-mysql/seed.ts"
+        }
+
+        - Thêm data vào 
+        npx prisma db seed
+
+        - Xoá tất cả data 
+        npx prisma migrate reset
+
+# Authentication
+    npm install @nestjs/passport passport
+    npm install @nestjs/jwt jsonwebtoken
+    npm install cookie-parser
+    npm install --save-dev @types/cookie-parser
+    npm install class-validator class-transformer
+
+# Swagger
+    npm install @nestjs/swagger swagger-ui-express 
+
+# Mailer   
+    npm install --save @nestjs-modules/mailer nodemailer
+    npm install --save handlebars
+    
+# 
+
+
+
+
+
+
