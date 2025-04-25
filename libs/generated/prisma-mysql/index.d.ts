@@ -14,6 +14,21 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
 /**
+ * Model CinemaBrand
+ * 
+ */
+export type CinemaBrand = $Result.DefaultSelection<Prisma.$CinemaBrandPayload>
+/**
+ * Model Provinces
+ * 
+ */
+export type Provinces = $Result.DefaultSelection<Prisma.$ProvincesPayload>
+/**
+ * Model Cinema
+ * 
+ */
+export type Cinema = $Result.DefaultSelection<Prisma.$CinemaPayload>
+/**
  * Model User
  * 
  */
@@ -24,8 +39,12 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export namespace $Enums {
   export const Role: {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  BRAND_MANAGER: 'BRAND_MANAGER',
+  CINEMA_MANAGER: 'CINEMA_MANAGER',
+  COUNTER_STAFF: 'COUNTER_STAFF',
   USER: 'USER',
-  ADMIN: 'ADMIN'
+  REVIEWER: 'REVIEWER'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
@@ -55,8 +74,8 @@ export const Status: typeof $Enums.Status
  * @example
  * ```
  * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
+ * // Fetch zero or more CinemaBrands
+ * const cinemaBrands = await prisma.cinemaBrand.findMany()
  * ```
  *
  *
@@ -76,8 +95,8 @@ export class PrismaClient<
    * @example
    * ```
    * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
+   * // Fetch zero or more CinemaBrands
+   * const cinemaBrands = await prisma.cinemaBrand.findMany()
    * ```
    *
    *
@@ -174,6 +193,36 @@ export class PrismaClient<
   }>>
 
       /**
+   * `prisma.cinemaBrand`: Exposes CRUD operations for the **CinemaBrand** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CinemaBrands
+    * const cinemaBrands = await prisma.cinemaBrand.findMany()
+    * ```
+    */
+  get cinemaBrand(): Prisma.CinemaBrandDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.provinces`: Exposes CRUD operations for the **Provinces** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Provinces
+    * const provinces = await prisma.provinces.findMany()
+    * ```
+    */
+  get provinces(): Prisma.ProvincesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.cinema`: Exposes CRUD operations for the **Cinema** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Cinemas
+    * const cinemas = await prisma.cinema.findMany()
+    * ```
+    */
+  get cinema(): Prisma.CinemaDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.user`: Exposes CRUD operations for the **User** model.
     * Example usage:
     * ```ts
@@ -622,6 +671,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
+    CinemaBrand: 'CinemaBrand',
+    Provinces: 'Provinces',
+    Cinema: 'Cinema',
     User: 'User'
   };
 
@@ -641,10 +693,208 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "cinemaBrand" | "provinces" | "cinema" | "user"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
+      CinemaBrand: {
+        payload: Prisma.$CinemaBrandPayload<ExtArgs>
+        fields: Prisma.CinemaBrandFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CinemaBrandFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CinemaBrandFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload>
+          }
+          findFirst: {
+            args: Prisma.CinemaBrandFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CinemaBrandFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload>
+          }
+          findMany: {
+            args: Prisma.CinemaBrandFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload>[]
+          }
+          create: {
+            args: Prisma.CinemaBrandCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload>
+          }
+          createMany: {
+            args: Prisma.CinemaBrandCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CinemaBrandDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload>
+          }
+          update: {
+            args: Prisma.CinemaBrandUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload>
+          }
+          deleteMany: {
+            args: Prisma.CinemaBrandDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CinemaBrandUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CinemaBrandUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaBrandPayload>
+          }
+          aggregate: {
+            args: Prisma.CinemaBrandAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCinemaBrand>
+          }
+          groupBy: {
+            args: Prisma.CinemaBrandGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CinemaBrandGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CinemaBrandCountArgs<ExtArgs>
+            result: $Utils.Optional<CinemaBrandCountAggregateOutputType> | number
+          }
+        }
+      }
+      Provinces: {
+        payload: Prisma.$ProvincesPayload<ExtArgs>
+        fields: Prisma.ProvincesFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ProvincesFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ProvincesFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload>
+          }
+          findFirst: {
+            args: Prisma.ProvincesFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ProvincesFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload>
+          }
+          findMany: {
+            args: Prisma.ProvincesFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload>[]
+          }
+          create: {
+            args: Prisma.ProvincesCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload>
+          }
+          createMany: {
+            args: Prisma.ProvincesCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ProvincesDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload>
+          }
+          update: {
+            args: Prisma.ProvincesUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload>
+          }
+          deleteMany: {
+            args: Prisma.ProvincesDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ProvincesUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ProvincesUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ProvincesPayload>
+          }
+          aggregate: {
+            args: Prisma.ProvincesAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateProvinces>
+          }
+          groupBy: {
+            args: Prisma.ProvincesGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ProvincesGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ProvincesCountArgs<ExtArgs>
+            result: $Utils.Optional<ProvincesCountAggregateOutputType> | number
+          }
+        }
+      }
+      Cinema: {
+        payload: Prisma.$CinemaPayload<ExtArgs>
+        fields: Prisma.CinemaFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CinemaFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CinemaFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload>
+          }
+          findFirst: {
+            args: Prisma.CinemaFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CinemaFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload>
+          }
+          findMany: {
+            args: Prisma.CinemaFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload>[]
+          }
+          create: {
+            args: Prisma.CinemaCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload>
+          }
+          createMany: {
+            args: Prisma.CinemaCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CinemaDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload>
+          }
+          update: {
+            args: Prisma.CinemaUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload>
+          }
+          deleteMany: {
+            args: Prisma.CinemaDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CinemaUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CinemaUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CinemaPayload>
+          }
+          aggregate: {
+            args: Prisma.CinemaAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCinema>
+          }
+          groupBy: {
+            args: Prisma.CinemaGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CinemaGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CinemaCountArgs<ExtArgs>
+            result: $Utils.Optional<CinemaCountAggregateOutputType> | number
+          }
+        }
+      }
       User: {
         payload: Prisma.$UserPayload<ExtArgs>
         fields: Prisma.UserFieldRefs
@@ -795,6 +1045,9 @@ export namespace Prisma {
     omit?: Prisma.GlobalOmitConfig
   }
   export type GlobalOmitConfig = {
+    cinemaBrand?: CinemaBrandOmit
+    provinces?: ProvincesOmit
+    cinema?: CinemaOmit
     user?: UserOmit
   }
 
@@ -885,10 +1138,3155 @@ export namespace Prisma {
    */
 
 
+  /**
+   * Count Type CinemaBrandCountOutputType
+   */
+
+  export type CinemaBrandCountOutputType = {
+    users: number
+    cinemas: number
+  }
+
+  export type CinemaBrandCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | CinemaBrandCountOutputTypeCountUsersArgs
+    cinemas?: boolean | CinemaBrandCountOutputTypeCountCinemasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CinemaBrandCountOutputType without action
+   */
+  export type CinemaBrandCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrandCountOutputType
+     */
+    select?: CinemaBrandCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CinemaBrandCountOutputType without action
+   */
+  export type CinemaBrandCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+  }
+
+  /**
+   * CinemaBrandCountOutputType without action
+   */
+  export type CinemaBrandCountOutputTypeCountCinemasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CinemaWhereInput
+  }
+
+
+  /**
+   * Count Type ProvincesCountOutputType
+   */
+
+  export type ProvincesCountOutputType = {
+    cinemas: number
+  }
+
+  export type ProvincesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cinemas?: boolean | ProvincesCountOutputTypeCountCinemasArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ProvincesCountOutputType without action
+   */
+  export type ProvincesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ProvincesCountOutputType
+     */
+    select?: ProvincesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ProvincesCountOutputType without action
+   */
+  export type ProvincesCountOutputTypeCountCinemasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CinemaWhereInput
+  }
+
+
+  /**
+   * Count Type CinemaCountOutputType
+   */
+
+  export type CinemaCountOutputType = {
+    users: number
+  }
+
+  export type CinemaCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | CinemaCountOutputTypeCountUsersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CinemaCountOutputType without action
+   */
+  export type CinemaCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaCountOutputType
+     */
+    select?: CinemaCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CinemaCountOutputType without action
+   */
+  export type CinemaCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+  }
+
 
   /**
    * Models
    */
+
+  /**
+   * Model CinemaBrand
+   */
+
+  export type AggregateCinemaBrand = {
+    _count: CinemaBrandCountAggregateOutputType | null
+    _avg: CinemaBrandAvgAggregateOutputType | null
+    _sum: CinemaBrandSumAggregateOutputType | null
+    _min: CinemaBrandMinAggregateOutputType | null
+    _max: CinemaBrandMaxAggregateOutputType | null
+  }
+
+  export type CinemaBrandAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CinemaBrandSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CinemaBrandMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    logo: string | null
+    createdAt: Date | null
+  }
+
+  export type CinemaBrandMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    logo: string | null
+    createdAt: Date | null
+  }
+
+  export type CinemaBrandCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    logo: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CinemaBrandAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type CinemaBrandSumAggregateInputType = {
+    id?: true
+  }
+
+  export type CinemaBrandMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    logo?: true
+    createdAt?: true
+  }
+
+  export type CinemaBrandMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    logo?: true
+    createdAt?: true
+  }
+
+  export type CinemaBrandCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    logo?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CinemaBrandAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CinemaBrand to aggregate.
+     */
+    where?: CinemaBrandWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CinemaBrands to fetch.
+     */
+    orderBy?: CinemaBrandOrderByWithRelationInput | CinemaBrandOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CinemaBrandWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CinemaBrands from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CinemaBrands.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CinemaBrands
+    **/
+    _count?: true | CinemaBrandCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CinemaBrandAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CinemaBrandSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CinemaBrandMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CinemaBrandMaxAggregateInputType
+  }
+
+  export type GetCinemaBrandAggregateType<T extends CinemaBrandAggregateArgs> = {
+        [P in keyof T & keyof AggregateCinemaBrand]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCinemaBrand[P]>
+      : GetScalarType<T[P], AggregateCinemaBrand[P]>
+  }
+
+
+
+
+  export type CinemaBrandGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CinemaBrandWhereInput
+    orderBy?: CinemaBrandOrderByWithAggregationInput | CinemaBrandOrderByWithAggregationInput[]
+    by: CinemaBrandScalarFieldEnum[] | CinemaBrandScalarFieldEnum
+    having?: CinemaBrandScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CinemaBrandCountAggregateInputType | true
+    _avg?: CinemaBrandAvgAggregateInputType
+    _sum?: CinemaBrandSumAggregateInputType
+    _min?: CinemaBrandMinAggregateInputType
+    _max?: CinemaBrandMaxAggregateInputType
+  }
+
+  export type CinemaBrandGroupByOutputType = {
+    id: number
+    name: string
+    slug: string
+    logo: string | null
+    createdAt: Date
+    _count: CinemaBrandCountAggregateOutputType | null
+    _avg: CinemaBrandAvgAggregateOutputType | null
+    _sum: CinemaBrandSumAggregateOutputType | null
+    _min: CinemaBrandMinAggregateOutputType | null
+    _max: CinemaBrandMaxAggregateOutputType | null
+  }
+
+  type GetCinemaBrandGroupByPayload<T extends CinemaBrandGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CinemaBrandGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CinemaBrandGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CinemaBrandGroupByOutputType[P]>
+            : GetScalarType<T[P], CinemaBrandGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CinemaBrandSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    logo?: boolean
+    createdAt?: boolean
+    users?: boolean | CinemaBrand$usersArgs<ExtArgs>
+    cinemas?: boolean | CinemaBrand$cinemasArgs<ExtArgs>
+    _count?: boolean | CinemaBrandCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["cinemaBrand"]>
+
+
+
+  export type CinemaBrandSelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    logo?: boolean
+    createdAt?: boolean
+  }
+
+  export type CinemaBrandOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "logo" | "createdAt", ExtArgs["result"]["cinemaBrand"]>
+  export type CinemaBrandInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    users?: boolean | CinemaBrand$usersArgs<ExtArgs>
+    cinemas?: boolean | CinemaBrand$cinemasArgs<ExtArgs>
+    _count?: boolean | CinemaBrandCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CinemaBrandPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CinemaBrand"
+    objects: {
+      users: Prisma.$UserPayload<ExtArgs>[]
+      cinemas: Prisma.$CinemaPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      slug: string
+      logo: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["cinemaBrand"]>
+    composites: {}
+  }
+
+  type CinemaBrandGetPayload<S extends boolean | null | undefined | CinemaBrandDefaultArgs> = $Result.GetResult<Prisma.$CinemaBrandPayload, S>
+
+  type CinemaBrandCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CinemaBrandFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CinemaBrandCountAggregateInputType | true
+    }
+
+  export interface CinemaBrandDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CinemaBrand'], meta: { name: 'CinemaBrand' } }
+    /**
+     * Find zero or one CinemaBrand that matches the filter.
+     * @param {CinemaBrandFindUniqueArgs} args - Arguments to find a CinemaBrand
+     * @example
+     * // Get one CinemaBrand
+     * const cinemaBrand = await prisma.cinemaBrand.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CinemaBrandFindUniqueArgs>(args: SelectSubset<T, CinemaBrandFindUniqueArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CinemaBrand that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CinemaBrandFindUniqueOrThrowArgs} args - Arguments to find a CinemaBrand
+     * @example
+     * // Get one CinemaBrand
+     * const cinemaBrand = await prisma.cinemaBrand.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CinemaBrandFindUniqueOrThrowArgs>(args: SelectSubset<T, CinemaBrandFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CinemaBrand that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaBrandFindFirstArgs} args - Arguments to find a CinemaBrand
+     * @example
+     * // Get one CinemaBrand
+     * const cinemaBrand = await prisma.cinemaBrand.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CinemaBrandFindFirstArgs>(args?: SelectSubset<T, CinemaBrandFindFirstArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CinemaBrand that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaBrandFindFirstOrThrowArgs} args - Arguments to find a CinemaBrand
+     * @example
+     * // Get one CinemaBrand
+     * const cinemaBrand = await prisma.cinemaBrand.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CinemaBrandFindFirstOrThrowArgs>(args?: SelectSubset<T, CinemaBrandFindFirstOrThrowArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CinemaBrands that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaBrandFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CinemaBrands
+     * const cinemaBrands = await prisma.cinemaBrand.findMany()
+     * 
+     * // Get first 10 CinemaBrands
+     * const cinemaBrands = await prisma.cinemaBrand.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cinemaBrandWithIdOnly = await prisma.cinemaBrand.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CinemaBrandFindManyArgs>(args?: SelectSubset<T, CinemaBrandFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CinemaBrand.
+     * @param {CinemaBrandCreateArgs} args - Arguments to create a CinemaBrand.
+     * @example
+     * // Create one CinemaBrand
+     * const CinemaBrand = await prisma.cinemaBrand.create({
+     *   data: {
+     *     // ... data to create a CinemaBrand
+     *   }
+     * })
+     * 
+     */
+    create<T extends CinemaBrandCreateArgs>(args: SelectSubset<T, CinemaBrandCreateArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CinemaBrands.
+     * @param {CinemaBrandCreateManyArgs} args - Arguments to create many CinemaBrands.
+     * @example
+     * // Create many CinemaBrands
+     * const cinemaBrand = await prisma.cinemaBrand.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CinemaBrandCreateManyArgs>(args?: SelectSubset<T, CinemaBrandCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CinemaBrand.
+     * @param {CinemaBrandDeleteArgs} args - Arguments to delete one CinemaBrand.
+     * @example
+     * // Delete one CinemaBrand
+     * const CinemaBrand = await prisma.cinemaBrand.delete({
+     *   where: {
+     *     // ... filter to delete one CinemaBrand
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CinemaBrandDeleteArgs>(args: SelectSubset<T, CinemaBrandDeleteArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CinemaBrand.
+     * @param {CinemaBrandUpdateArgs} args - Arguments to update one CinemaBrand.
+     * @example
+     * // Update one CinemaBrand
+     * const cinemaBrand = await prisma.cinemaBrand.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CinemaBrandUpdateArgs>(args: SelectSubset<T, CinemaBrandUpdateArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CinemaBrands.
+     * @param {CinemaBrandDeleteManyArgs} args - Arguments to filter CinemaBrands to delete.
+     * @example
+     * // Delete a few CinemaBrands
+     * const { count } = await prisma.cinemaBrand.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CinemaBrandDeleteManyArgs>(args?: SelectSubset<T, CinemaBrandDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CinemaBrands.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaBrandUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CinemaBrands
+     * const cinemaBrand = await prisma.cinemaBrand.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CinemaBrandUpdateManyArgs>(args: SelectSubset<T, CinemaBrandUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CinemaBrand.
+     * @param {CinemaBrandUpsertArgs} args - Arguments to update or create a CinemaBrand.
+     * @example
+     * // Update or create a CinemaBrand
+     * const cinemaBrand = await prisma.cinemaBrand.upsert({
+     *   create: {
+     *     // ... data to create a CinemaBrand
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CinemaBrand we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CinemaBrandUpsertArgs>(args: SelectSubset<T, CinemaBrandUpsertArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CinemaBrands.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaBrandCountArgs} args - Arguments to filter CinemaBrands to count.
+     * @example
+     * // Count the number of CinemaBrands
+     * const count = await prisma.cinemaBrand.count({
+     *   where: {
+     *     // ... the filter for the CinemaBrands we want to count
+     *   }
+     * })
+    **/
+    count<T extends CinemaBrandCountArgs>(
+      args?: Subset<T, CinemaBrandCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CinemaBrandCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CinemaBrand.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaBrandAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CinemaBrandAggregateArgs>(args: Subset<T, CinemaBrandAggregateArgs>): Prisma.PrismaPromise<GetCinemaBrandAggregateType<T>>
+
+    /**
+     * Group by CinemaBrand.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaBrandGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CinemaBrandGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CinemaBrandGroupByArgs['orderBy'] }
+        : { orderBy?: CinemaBrandGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CinemaBrandGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCinemaBrandGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CinemaBrand model
+   */
+  readonly fields: CinemaBrandFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CinemaBrand.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CinemaBrandClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    users<T extends CinemaBrand$usersArgs<ExtArgs> = {}>(args?: Subset<T, CinemaBrand$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    cinemas<T extends CinemaBrand$cinemasArgs<ExtArgs> = {}>(args?: Subset<T, CinemaBrand$cinemasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CinemaBrand model
+   */
+  interface CinemaBrandFieldRefs {
+    readonly id: FieldRef<"CinemaBrand", 'Int'>
+    readonly name: FieldRef<"CinemaBrand", 'String'>
+    readonly slug: FieldRef<"CinemaBrand", 'String'>
+    readonly logo: FieldRef<"CinemaBrand", 'String'>
+    readonly createdAt: FieldRef<"CinemaBrand", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CinemaBrand findUnique
+   */
+  export type CinemaBrandFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * Filter, which CinemaBrand to fetch.
+     */
+    where: CinemaBrandWhereUniqueInput
+  }
+
+  /**
+   * CinemaBrand findUniqueOrThrow
+   */
+  export type CinemaBrandFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * Filter, which CinemaBrand to fetch.
+     */
+    where: CinemaBrandWhereUniqueInput
+  }
+
+  /**
+   * CinemaBrand findFirst
+   */
+  export type CinemaBrandFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * Filter, which CinemaBrand to fetch.
+     */
+    where?: CinemaBrandWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CinemaBrands to fetch.
+     */
+    orderBy?: CinemaBrandOrderByWithRelationInput | CinemaBrandOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CinemaBrands.
+     */
+    cursor?: CinemaBrandWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CinemaBrands from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CinemaBrands.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CinemaBrands.
+     */
+    distinct?: CinemaBrandScalarFieldEnum | CinemaBrandScalarFieldEnum[]
+  }
+
+  /**
+   * CinemaBrand findFirstOrThrow
+   */
+  export type CinemaBrandFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * Filter, which CinemaBrand to fetch.
+     */
+    where?: CinemaBrandWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CinemaBrands to fetch.
+     */
+    orderBy?: CinemaBrandOrderByWithRelationInput | CinemaBrandOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CinemaBrands.
+     */
+    cursor?: CinemaBrandWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CinemaBrands from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CinemaBrands.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CinemaBrands.
+     */
+    distinct?: CinemaBrandScalarFieldEnum | CinemaBrandScalarFieldEnum[]
+  }
+
+  /**
+   * CinemaBrand findMany
+   */
+  export type CinemaBrandFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * Filter, which CinemaBrands to fetch.
+     */
+    where?: CinemaBrandWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CinemaBrands to fetch.
+     */
+    orderBy?: CinemaBrandOrderByWithRelationInput | CinemaBrandOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CinemaBrands.
+     */
+    cursor?: CinemaBrandWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CinemaBrands from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CinemaBrands.
+     */
+    skip?: number
+    distinct?: CinemaBrandScalarFieldEnum | CinemaBrandScalarFieldEnum[]
+  }
+
+  /**
+   * CinemaBrand create
+   */
+  export type CinemaBrandCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CinemaBrand.
+     */
+    data: XOR<CinemaBrandCreateInput, CinemaBrandUncheckedCreateInput>
+  }
+
+  /**
+   * CinemaBrand createMany
+   */
+  export type CinemaBrandCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CinemaBrands.
+     */
+    data: CinemaBrandCreateManyInput | CinemaBrandCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CinemaBrand update
+   */
+  export type CinemaBrandUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CinemaBrand.
+     */
+    data: XOR<CinemaBrandUpdateInput, CinemaBrandUncheckedUpdateInput>
+    /**
+     * Choose, which CinemaBrand to update.
+     */
+    where: CinemaBrandWhereUniqueInput
+  }
+
+  /**
+   * CinemaBrand updateMany
+   */
+  export type CinemaBrandUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CinemaBrands.
+     */
+    data: XOR<CinemaBrandUpdateManyMutationInput, CinemaBrandUncheckedUpdateManyInput>
+    /**
+     * Filter which CinemaBrands to update
+     */
+    where?: CinemaBrandWhereInput
+    /**
+     * Limit how many CinemaBrands to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CinemaBrand upsert
+   */
+  export type CinemaBrandUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CinemaBrand to update in case it exists.
+     */
+    where: CinemaBrandWhereUniqueInput
+    /**
+     * In case the CinemaBrand found by the `where` argument doesn't exist, create a new CinemaBrand with this data.
+     */
+    create: XOR<CinemaBrandCreateInput, CinemaBrandUncheckedCreateInput>
+    /**
+     * In case the CinemaBrand was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CinemaBrandUpdateInput, CinemaBrandUncheckedUpdateInput>
+  }
+
+  /**
+   * CinemaBrand delete
+   */
+  export type CinemaBrandDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    /**
+     * Filter which CinemaBrand to delete.
+     */
+    where: CinemaBrandWhereUniqueInput
+  }
+
+  /**
+   * CinemaBrand deleteMany
+   */
+  export type CinemaBrandDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CinemaBrands to delete
+     */
+    where?: CinemaBrandWhereInput
+    /**
+     * Limit how many CinemaBrands to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CinemaBrand.users
+   */
+  export type CinemaBrand$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * CinemaBrand.cinemas
+   */
+  export type CinemaBrand$cinemasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    where?: CinemaWhereInput
+    orderBy?: CinemaOrderByWithRelationInput | CinemaOrderByWithRelationInput[]
+    cursor?: CinemaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CinemaScalarFieldEnum | CinemaScalarFieldEnum[]
+  }
+
+  /**
+   * CinemaBrand without action
+   */
+  export type CinemaBrandDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Provinces
+   */
+
+  export type AggregateProvinces = {
+    _count: ProvincesCountAggregateOutputType | null
+    _avg: ProvincesAvgAggregateOutputType | null
+    _sum: ProvincesSumAggregateOutputType | null
+    _min: ProvincesMinAggregateOutputType | null
+    _max: ProvincesMaxAggregateOutputType | null
+  }
+
+  export type ProvincesAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ProvincesSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type ProvincesMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+  }
+
+  export type ProvincesMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+  }
+
+  export type ProvincesCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    _all: number
+  }
+
+
+  export type ProvincesAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type ProvincesSumAggregateInputType = {
+    id?: true
+  }
+
+  export type ProvincesMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+  }
+
+  export type ProvincesMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+  }
+
+  export type ProvincesCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    _all?: true
+  }
+
+  export type ProvincesAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Provinces to aggregate.
+     */
+    where?: ProvincesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Provinces to fetch.
+     */
+    orderBy?: ProvincesOrderByWithRelationInput | ProvincesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ProvincesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Provinces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Provinces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Provinces
+    **/
+    _count?: true | ProvincesCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ProvincesAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProvincesSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ProvincesMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ProvincesMaxAggregateInputType
+  }
+
+  export type GetProvincesAggregateType<T extends ProvincesAggregateArgs> = {
+        [P in keyof T & keyof AggregateProvinces]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateProvinces[P]>
+      : GetScalarType<T[P], AggregateProvinces[P]>
+  }
+
+
+
+
+  export type ProvincesGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProvincesWhereInput
+    orderBy?: ProvincesOrderByWithAggregationInput | ProvincesOrderByWithAggregationInput[]
+    by: ProvincesScalarFieldEnum[] | ProvincesScalarFieldEnum
+    having?: ProvincesScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ProvincesCountAggregateInputType | true
+    _avg?: ProvincesAvgAggregateInputType
+    _sum?: ProvincesSumAggregateInputType
+    _min?: ProvincesMinAggregateInputType
+    _max?: ProvincesMaxAggregateInputType
+  }
+
+  export type ProvincesGroupByOutputType = {
+    id: number
+    name: string
+    slug: string
+    _count: ProvincesCountAggregateOutputType | null
+    _avg: ProvincesAvgAggregateOutputType | null
+    _sum: ProvincesSumAggregateOutputType | null
+    _min: ProvincesMinAggregateOutputType | null
+    _max: ProvincesMaxAggregateOutputType | null
+  }
+
+  type GetProvincesGroupByPayload<T extends ProvincesGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ProvincesGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ProvincesGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ProvincesGroupByOutputType[P]>
+            : GetScalarType<T[P], ProvincesGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ProvincesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    cinemas?: boolean | Provinces$cinemasArgs<ExtArgs>
+    _count?: boolean | ProvincesCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["provinces"]>
+
+
+
+  export type ProvincesSelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+  }
+
+  export type ProvincesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug", ExtArgs["result"]["provinces"]>
+  export type ProvincesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    cinemas?: boolean | Provinces$cinemasArgs<ExtArgs>
+    _count?: boolean | ProvincesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ProvincesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Provinces"
+    objects: {
+      cinemas: Prisma.$CinemaPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      slug: string
+    }, ExtArgs["result"]["provinces"]>
+    composites: {}
+  }
+
+  type ProvincesGetPayload<S extends boolean | null | undefined | ProvincesDefaultArgs> = $Result.GetResult<Prisma.$ProvincesPayload, S>
+
+  type ProvincesCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ProvincesFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ProvincesCountAggregateInputType | true
+    }
+
+  export interface ProvincesDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Provinces'], meta: { name: 'Provinces' } }
+    /**
+     * Find zero or one Provinces that matches the filter.
+     * @param {ProvincesFindUniqueArgs} args - Arguments to find a Provinces
+     * @example
+     * // Get one Provinces
+     * const provinces = await prisma.provinces.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ProvincesFindUniqueArgs>(args: SelectSubset<T, ProvincesFindUniqueArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Provinces that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ProvincesFindUniqueOrThrowArgs} args - Arguments to find a Provinces
+     * @example
+     * // Get one Provinces
+     * const provinces = await prisma.provinces.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ProvincesFindUniqueOrThrowArgs>(args: SelectSubset<T, ProvincesFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Provinces that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvincesFindFirstArgs} args - Arguments to find a Provinces
+     * @example
+     * // Get one Provinces
+     * const provinces = await prisma.provinces.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ProvincesFindFirstArgs>(args?: SelectSubset<T, ProvincesFindFirstArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Provinces that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvincesFindFirstOrThrowArgs} args - Arguments to find a Provinces
+     * @example
+     * // Get one Provinces
+     * const provinces = await prisma.provinces.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ProvincesFindFirstOrThrowArgs>(args?: SelectSubset<T, ProvincesFindFirstOrThrowArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Provinces that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvincesFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Provinces
+     * const provinces = await prisma.provinces.findMany()
+     * 
+     * // Get first 10 Provinces
+     * const provinces = await prisma.provinces.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const provincesWithIdOnly = await prisma.provinces.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ProvincesFindManyArgs>(args?: SelectSubset<T, ProvincesFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Provinces.
+     * @param {ProvincesCreateArgs} args - Arguments to create a Provinces.
+     * @example
+     * // Create one Provinces
+     * const Provinces = await prisma.provinces.create({
+     *   data: {
+     *     // ... data to create a Provinces
+     *   }
+     * })
+     * 
+     */
+    create<T extends ProvincesCreateArgs>(args: SelectSubset<T, ProvincesCreateArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Provinces.
+     * @param {ProvincesCreateManyArgs} args - Arguments to create many Provinces.
+     * @example
+     * // Create many Provinces
+     * const provinces = await prisma.provinces.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ProvincesCreateManyArgs>(args?: SelectSubset<T, ProvincesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Provinces.
+     * @param {ProvincesDeleteArgs} args - Arguments to delete one Provinces.
+     * @example
+     * // Delete one Provinces
+     * const Provinces = await prisma.provinces.delete({
+     *   where: {
+     *     // ... filter to delete one Provinces
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ProvincesDeleteArgs>(args: SelectSubset<T, ProvincesDeleteArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Provinces.
+     * @param {ProvincesUpdateArgs} args - Arguments to update one Provinces.
+     * @example
+     * // Update one Provinces
+     * const provinces = await prisma.provinces.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ProvincesUpdateArgs>(args: SelectSubset<T, ProvincesUpdateArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Provinces.
+     * @param {ProvincesDeleteManyArgs} args - Arguments to filter Provinces to delete.
+     * @example
+     * // Delete a few Provinces
+     * const { count } = await prisma.provinces.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ProvincesDeleteManyArgs>(args?: SelectSubset<T, ProvincesDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Provinces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvincesUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Provinces
+     * const provinces = await prisma.provinces.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ProvincesUpdateManyArgs>(args: SelectSubset<T, ProvincesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Provinces.
+     * @param {ProvincesUpsertArgs} args - Arguments to update or create a Provinces.
+     * @example
+     * // Update or create a Provinces
+     * const provinces = await prisma.provinces.upsert({
+     *   create: {
+     *     // ... data to create a Provinces
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Provinces we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ProvincesUpsertArgs>(args: SelectSubset<T, ProvincesUpsertArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Provinces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvincesCountArgs} args - Arguments to filter Provinces to count.
+     * @example
+     * // Count the number of Provinces
+     * const count = await prisma.provinces.count({
+     *   where: {
+     *     // ... the filter for the Provinces we want to count
+     *   }
+     * })
+    **/
+    count<T extends ProvincesCountArgs>(
+      args?: Subset<T, ProvincesCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ProvincesCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Provinces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvincesAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ProvincesAggregateArgs>(args: Subset<T, ProvincesAggregateArgs>): Prisma.PrismaPromise<GetProvincesAggregateType<T>>
+
+    /**
+     * Group by Provinces.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ProvincesGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ProvincesGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ProvincesGroupByArgs['orderBy'] }
+        : { orderBy?: ProvincesGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ProvincesGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetProvincesGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Provinces model
+   */
+  readonly fields: ProvincesFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Provinces.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ProvincesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    cinemas<T extends Provinces$cinemasArgs<ExtArgs> = {}>(args?: Subset<T, Provinces$cinemasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Provinces model
+   */
+  interface ProvincesFieldRefs {
+    readonly id: FieldRef<"Provinces", 'Int'>
+    readonly name: FieldRef<"Provinces", 'String'>
+    readonly slug: FieldRef<"Provinces", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Provinces findUnique
+   */
+  export type ProvincesFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * Filter, which Provinces to fetch.
+     */
+    where: ProvincesWhereUniqueInput
+  }
+
+  /**
+   * Provinces findUniqueOrThrow
+   */
+  export type ProvincesFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * Filter, which Provinces to fetch.
+     */
+    where: ProvincesWhereUniqueInput
+  }
+
+  /**
+   * Provinces findFirst
+   */
+  export type ProvincesFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * Filter, which Provinces to fetch.
+     */
+    where?: ProvincesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Provinces to fetch.
+     */
+    orderBy?: ProvincesOrderByWithRelationInput | ProvincesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Provinces.
+     */
+    cursor?: ProvincesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Provinces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Provinces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Provinces.
+     */
+    distinct?: ProvincesScalarFieldEnum | ProvincesScalarFieldEnum[]
+  }
+
+  /**
+   * Provinces findFirstOrThrow
+   */
+  export type ProvincesFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * Filter, which Provinces to fetch.
+     */
+    where?: ProvincesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Provinces to fetch.
+     */
+    orderBy?: ProvincesOrderByWithRelationInput | ProvincesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Provinces.
+     */
+    cursor?: ProvincesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Provinces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Provinces.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Provinces.
+     */
+    distinct?: ProvincesScalarFieldEnum | ProvincesScalarFieldEnum[]
+  }
+
+  /**
+   * Provinces findMany
+   */
+  export type ProvincesFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * Filter, which Provinces to fetch.
+     */
+    where?: ProvincesWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Provinces to fetch.
+     */
+    orderBy?: ProvincesOrderByWithRelationInput | ProvincesOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Provinces.
+     */
+    cursor?: ProvincesWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Provinces from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Provinces.
+     */
+    skip?: number
+    distinct?: ProvincesScalarFieldEnum | ProvincesScalarFieldEnum[]
+  }
+
+  /**
+   * Provinces create
+   */
+  export type ProvincesCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Provinces.
+     */
+    data: XOR<ProvincesCreateInput, ProvincesUncheckedCreateInput>
+  }
+
+  /**
+   * Provinces createMany
+   */
+  export type ProvincesCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Provinces.
+     */
+    data: ProvincesCreateManyInput | ProvincesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Provinces update
+   */
+  export type ProvincesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Provinces.
+     */
+    data: XOR<ProvincesUpdateInput, ProvincesUncheckedUpdateInput>
+    /**
+     * Choose, which Provinces to update.
+     */
+    where: ProvincesWhereUniqueInput
+  }
+
+  /**
+   * Provinces updateMany
+   */
+  export type ProvincesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Provinces.
+     */
+    data: XOR<ProvincesUpdateManyMutationInput, ProvincesUncheckedUpdateManyInput>
+    /**
+     * Filter which Provinces to update
+     */
+    where?: ProvincesWhereInput
+    /**
+     * Limit how many Provinces to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Provinces upsert
+   */
+  export type ProvincesUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Provinces to update in case it exists.
+     */
+    where: ProvincesWhereUniqueInput
+    /**
+     * In case the Provinces found by the `where` argument doesn't exist, create a new Provinces with this data.
+     */
+    create: XOR<ProvincesCreateInput, ProvincesUncheckedCreateInput>
+    /**
+     * In case the Provinces was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ProvincesUpdateInput, ProvincesUncheckedUpdateInput>
+  }
+
+  /**
+   * Provinces delete
+   */
+  export type ProvincesDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    /**
+     * Filter which Provinces to delete.
+     */
+    where: ProvincesWhereUniqueInput
+  }
+
+  /**
+   * Provinces deleteMany
+   */
+  export type ProvincesDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Provinces to delete
+     */
+    where?: ProvincesWhereInput
+    /**
+     * Limit how many Provinces to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Provinces.cinemas
+   */
+  export type Provinces$cinemasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    where?: CinemaWhereInput
+    orderBy?: CinemaOrderByWithRelationInput | CinemaOrderByWithRelationInput[]
+    cursor?: CinemaWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CinemaScalarFieldEnum | CinemaScalarFieldEnum[]
+  }
+
+  /**
+   * Provinces without action
+   */
+  export type ProvincesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Cinema
+   */
+
+  export type AggregateCinema = {
+    _count: CinemaCountAggregateOutputType | null
+    _avg: CinemaAvgAggregateOutputType | null
+    _sum: CinemaSumAggregateOutputType | null
+    _min: CinemaMinAggregateOutputType | null
+    _max: CinemaMaxAggregateOutputType | null
+  }
+
+  export type CinemaAvgAggregateOutputType = {
+    id: number | null
+    brandId: number | null
+    provinceId: number | null
+  }
+
+  export type CinemaSumAggregateOutputType = {
+    id: number | null
+    brandId: number | null
+    provinceId: number | null
+  }
+
+  export type CinemaMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    address: string | null
+    status: $Enums.Status | null
+    map_link: string | null
+    brandId: number | null
+    provinceId: number | null
+    description: string | null
+    createdAt: Date | null
+  }
+
+  export type CinemaMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    address: string | null
+    status: $Enums.Status | null
+    map_link: string | null
+    brandId: number | null
+    provinceId: number | null
+    description: string | null
+    createdAt: Date | null
+  }
+
+  export type CinemaCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    address: number
+    status: number
+    map_link: number
+    brandId: number
+    provinceId: number
+    description: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type CinemaAvgAggregateInputType = {
+    id?: true
+    brandId?: true
+    provinceId?: true
+  }
+
+  export type CinemaSumAggregateInputType = {
+    id?: true
+    brandId?: true
+    provinceId?: true
+  }
+
+  export type CinemaMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    address?: true
+    status?: true
+    map_link?: true
+    brandId?: true
+    provinceId?: true
+    description?: true
+    createdAt?: true
+  }
+
+  export type CinemaMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    address?: true
+    status?: true
+    map_link?: true
+    brandId?: true
+    provinceId?: true
+    description?: true
+    createdAt?: true
+  }
+
+  export type CinemaCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    address?: true
+    status?: true
+    map_link?: true
+    brandId?: true
+    provinceId?: true
+    description?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type CinemaAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Cinema to aggregate.
+     */
+    where?: CinemaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cinemas to fetch.
+     */
+    orderBy?: CinemaOrderByWithRelationInput | CinemaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CinemaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cinemas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cinemas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Cinemas
+    **/
+    _count?: true | CinemaCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CinemaAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CinemaSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CinemaMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CinemaMaxAggregateInputType
+  }
+
+  export type GetCinemaAggregateType<T extends CinemaAggregateArgs> = {
+        [P in keyof T & keyof AggregateCinema]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCinema[P]>
+      : GetScalarType<T[P], AggregateCinema[P]>
+  }
+
+
+
+
+  export type CinemaGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CinemaWhereInput
+    orderBy?: CinemaOrderByWithAggregationInput | CinemaOrderByWithAggregationInput[]
+    by: CinemaScalarFieldEnum[] | CinemaScalarFieldEnum
+    having?: CinemaScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CinemaCountAggregateInputType | true
+    _avg?: CinemaAvgAggregateInputType
+    _sum?: CinemaSumAggregateInputType
+    _min?: CinemaMinAggregateInputType
+    _max?: CinemaMaxAggregateInputType
+  }
+
+  export type CinemaGroupByOutputType = {
+    id: number
+    name: string
+    slug: string
+    address: string
+    status: $Enums.Status
+    map_link: string
+    brandId: number
+    provinceId: number
+    description: string
+    createdAt: Date
+    _count: CinemaCountAggregateOutputType | null
+    _avg: CinemaAvgAggregateOutputType | null
+    _sum: CinemaSumAggregateOutputType | null
+    _min: CinemaMinAggregateOutputType | null
+    _max: CinemaMaxAggregateOutputType | null
+  }
+
+  type GetCinemaGroupByPayload<T extends CinemaGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CinemaGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CinemaGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CinemaGroupByOutputType[P]>
+            : GetScalarType<T[P], CinemaGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CinemaSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    address?: boolean
+    status?: boolean
+    map_link?: boolean
+    brandId?: boolean
+    provinceId?: boolean
+    description?: boolean
+    createdAt?: boolean
+    brand?: boolean | CinemaBrandDefaultArgs<ExtArgs>
+    province?: boolean | ProvincesDefaultArgs<ExtArgs>
+    users?: boolean | Cinema$usersArgs<ExtArgs>
+    _count?: boolean | CinemaCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["cinema"]>
+
+
+
+  export type CinemaSelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    address?: boolean
+    status?: boolean
+    map_link?: boolean
+    brandId?: boolean
+    provinceId?: boolean
+    description?: boolean
+    createdAt?: boolean
+  }
+
+  export type CinemaOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "address" | "status" | "map_link" | "brandId" | "provinceId" | "description" | "createdAt", ExtArgs["result"]["cinema"]>
+  export type CinemaInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    brand?: boolean | CinemaBrandDefaultArgs<ExtArgs>
+    province?: boolean | ProvincesDefaultArgs<ExtArgs>
+    users?: boolean | Cinema$usersArgs<ExtArgs>
+    _count?: boolean | CinemaCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CinemaPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Cinema"
+    objects: {
+      brand: Prisma.$CinemaBrandPayload<ExtArgs>
+      province: Prisma.$ProvincesPayload<ExtArgs>
+      users: Prisma.$UserPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      slug: string
+      address: string
+      status: $Enums.Status
+      map_link: string
+      brandId: number
+      provinceId: number
+      description: string
+      createdAt: Date
+    }, ExtArgs["result"]["cinema"]>
+    composites: {}
+  }
+
+  type CinemaGetPayload<S extends boolean | null | undefined | CinemaDefaultArgs> = $Result.GetResult<Prisma.$CinemaPayload, S>
+
+  type CinemaCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CinemaFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CinemaCountAggregateInputType | true
+    }
+
+  export interface CinemaDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Cinema'], meta: { name: 'Cinema' } }
+    /**
+     * Find zero or one Cinema that matches the filter.
+     * @param {CinemaFindUniqueArgs} args - Arguments to find a Cinema
+     * @example
+     * // Get one Cinema
+     * const cinema = await prisma.cinema.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CinemaFindUniqueArgs>(args: SelectSubset<T, CinemaFindUniqueArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Cinema that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CinemaFindUniqueOrThrowArgs} args - Arguments to find a Cinema
+     * @example
+     * // Get one Cinema
+     * const cinema = await prisma.cinema.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CinemaFindUniqueOrThrowArgs>(args: SelectSubset<T, CinemaFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Cinema that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaFindFirstArgs} args - Arguments to find a Cinema
+     * @example
+     * // Get one Cinema
+     * const cinema = await prisma.cinema.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CinemaFindFirstArgs>(args?: SelectSubset<T, CinemaFindFirstArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Cinema that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaFindFirstOrThrowArgs} args - Arguments to find a Cinema
+     * @example
+     * // Get one Cinema
+     * const cinema = await prisma.cinema.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CinemaFindFirstOrThrowArgs>(args?: SelectSubset<T, CinemaFindFirstOrThrowArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Cinemas that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Cinemas
+     * const cinemas = await prisma.cinema.findMany()
+     * 
+     * // Get first 10 Cinemas
+     * const cinemas = await prisma.cinema.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const cinemaWithIdOnly = await prisma.cinema.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CinemaFindManyArgs>(args?: SelectSubset<T, CinemaFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Cinema.
+     * @param {CinemaCreateArgs} args - Arguments to create a Cinema.
+     * @example
+     * // Create one Cinema
+     * const Cinema = await prisma.cinema.create({
+     *   data: {
+     *     // ... data to create a Cinema
+     *   }
+     * })
+     * 
+     */
+    create<T extends CinemaCreateArgs>(args: SelectSubset<T, CinemaCreateArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Cinemas.
+     * @param {CinemaCreateManyArgs} args - Arguments to create many Cinemas.
+     * @example
+     * // Create many Cinemas
+     * const cinema = await prisma.cinema.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CinemaCreateManyArgs>(args?: SelectSubset<T, CinemaCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Cinema.
+     * @param {CinemaDeleteArgs} args - Arguments to delete one Cinema.
+     * @example
+     * // Delete one Cinema
+     * const Cinema = await prisma.cinema.delete({
+     *   where: {
+     *     // ... filter to delete one Cinema
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CinemaDeleteArgs>(args: SelectSubset<T, CinemaDeleteArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Cinema.
+     * @param {CinemaUpdateArgs} args - Arguments to update one Cinema.
+     * @example
+     * // Update one Cinema
+     * const cinema = await prisma.cinema.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CinemaUpdateArgs>(args: SelectSubset<T, CinemaUpdateArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Cinemas.
+     * @param {CinemaDeleteManyArgs} args - Arguments to filter Cinemas to delete.
+     * @example
+     * // Delete a few Cinemas
+     * const { count } = await prisma.cinema.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CinemaDeleteManyArgs>(args?: SelectSubset<T, CinemaDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Cinemas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Cinemas
+     * const cinema = await prisma.cinema.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CinemaUpdateManyArgs>(args: SelectSubset<T, CinemaUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Cinema.
+     * @param {CinemaUpsertArgs} args - Arguments to update or create a Cinema.
+     * @example
+     * // Update or create a Cinema
+     * const cinema = await prisma.cinema.upsert({
+     *   create: {
+     *     // ... data to create a Cinema
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Cinema we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CinemaUpsertArgs>(args: SelectSubset<T, CinemaUpsertArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Cinemas.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaCountArgs} args - Arguments to filter Cinemas to count.
+     * @example
+     * // Count the number of Cinemas
+     * const count = await prisma.cinema.count({
+     *   where: {
+     *     // ... the filter for the Cinemas we want to count
+     *   }
+     * })
+    **/
+    count<T extends CinemaCountArgs>(
+      args?: Subset<T, CinemaCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CinemaCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Cinema.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CinemaAggregateArgs>(args: Subset<T, CinemaAggregateArgs>): Prisma.PrismaPromise<GetCinemaAggregateType<T>>
+
+    /**
+     * Group by Cinema.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CinemaGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CinemaGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CinemaGroupByArgs['orderBy'] }
+        : { orderBy?: CinemaGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CinemaGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCinemaGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Cinema model
+   */
+  readonly fields: CinemaFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Cinema.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CinemaClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    brand<T extends CinemaBrandDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CinemaBrandDefaultArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    province<T extends ProvincesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProvincesDefaultArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    users<T extends Cinema$usersArgs<ExtArgs> = {}>(args?: Subset<T, Cinema$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Cinema model
+   */
+  interface CinemaFieldRefs {
+    readonly id: FieldRef<"Cinema", 'Int'>
+    readonly name: FieldRef<"Cinema", 'String'>
+    readonly slug: FieldRef<"Cinema", 'String'>
+    readonly address: FieldRef<"Cinema", 'String'>
+    readonly status: FieldRef<"Cinema", 'Status'>
+    readonly map_link: FieldRef<"Cinema", 'String'>
+    readonly brandId: FieldRef<"Cinema", 'Int'>
+    readonly provinceId: FieldRef<"Cinema", 'Int'>
+    readonly description: FieldRef<"Cinema", 'String'>
+    readonly createdAt: FieldRef<"Cinema", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Cinema findUnique
+   */
+  export type CinemaFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * Filter, which Cinema to fetch.
+     */
+    where: CinemaWhereUniqueInput
+  }
+
+  /**
+   * Cinema findUniqueOrThrow
+   */
+  export type CinemaFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * Filter, which Cinema to fetch.
+     */
+    where: CinemaWhereUniqueInput
+  }
+
+  /**
+   * Cinema findFirst
+   */
+  export type CinemaFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * Filter, which Cinema to fetch.
+     */
+    where?: CinemaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cinemas to fetch.
+     */
+    orderBy?: CinemaOrderByWithRelationInput | CinemaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Cinemas.
+     */
+    cursor?: CinemaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cinemas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cinemas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Cinemas.
+     */
+    distinct?: CinemaScalarFieldEnum | CinemaScalarFieldEnum[]
+  }
+
+  /**
+   * Cinema findFirstOrThrow
+   */
+  export type CinemaFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * Filter, which Cinema to fetch.
+     */
+    where?: CinemaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cinemas to fetch.
+     */
+    orderBy?: CinemaOrderByWithRelationInput | CinemaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Cinemas.
+     */
+    cursor?: CinemaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cinemas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cinemas.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Cinemas.
+     */
+    distinct?: CinemaScalarFieldEnum | CinemaScalarFieldEnum[]
+  }
+
+  /**
+   * Cinema findMany
+   */
+  export type CinemaFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * Filter, which Cinemas to fetch.
+     */
+    where?: CinemaWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Cinemas to fetch.
+     */
+    orderBy?: CinemaOrderByWithRelationInput | CinemaOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Cinemas.
+     */
+    cursor?: CinemaWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Cinemas from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Cinemas.
+     */
+    skip?: number
+    distinct?: CinemaScalarFieldEnum | CinemaScalarFieldEnum[]
+  }
+
+  /**
+   * Cinema create
+   */
+  export type CinemaCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Cinema.
+     */
+    data: XOR<CinemaCreateInput, CinemaUncheckedCreateInput>
+  }
+
+  /**
+   * Cinema createMany
+   */
+  export type CinemaCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Cinemas.
+     */
+    data: CinemaCreateManyInput | CinemaCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Cinema update
+   */
+  export type CinemaUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Cinema.
+     */
+    data: XOR<CinemaUpdateInput, CinemaUncheckedUpdateInput>
+    /**
+     * Choose, which Cinema to update.
+     */
+    where: CinemaWhereUniqueInput
+  }
+
+  /**
+   * Cinema updateMany
+   */
+  export type CinemaUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Cinemas.
+     */
+    data: XOR<CinemaUpdateManyMutationInput, CinemaUncheckedUpdateManyInput>
+    /**
+     * Filter which Cinemas to update
+     */
+    where?: CinemaWhereInput
+    /**
+     * Limit how many Cinemas to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Cinema upsert
+   */
+  export type CinemaUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Cinema to update in case it exists.
+     */
+    where: CinemaWhereUniqueInput
+    /**
+     * In case the Cinema found by the `where` argument doesn't exist, create a new Cinema with this data.
+     */
+    create: XOR<CinemaCreateInput, CinemaUncheckedCreateInput>
+    /**
+     * In case the Cinema was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CinemaUpdateInput, CinemaUncheckedUpdateInput>
+  }
+
+  /**
+   * Cinema delete
+   */
+  export type CinemaDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    /**
+     * Filter which Cinema to delete.
+     */
+    where: CinemaWhereUniqueInput
+  }
+
+  /**
+   * Cinema deleteMany
+   */
+  export type CinemaDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Cinemas to delete
+     */
+    where?: CinemaWhereInput
+    /**
+     * Limit how many Cinemas to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Cinema.users
+   */
+  export type Cinema$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * Cinema without action
+   */
+  export type CinemaDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+  }
+
 
   /**
    * Model User
@@ -905,11 +4303,15 @@ export namespace Prisma {
   export type UserAvgAggregateOutputType = {
     id: number | null
     balance: number | null
+    brandId: number | null
+    cinemaId: number | null
   }
 
   export type UserSumAggregateOutputType = {
     id: number | null
     balance: number | null
+    brandId: number | null
+    cinemaId: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -929,6 +4331,8 @@ export namespace Prisma {
     codeExpired: Date | null
     role: $Enums.Role | null
     status: $Enums.Status | null
+    brandId: number | null
+    cinemaId: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -950,6 +4354,8 @@ export namespace Prisma {
     codeExpired: Date | null
     role: $Enums.Role | null
     status: $Enums.Status | null
+    brandId: number | null
+    cinemaId: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -971,6 +4377,8 @@ export namespace Prisma {
     codeExpired: number
     role: number
     status: number
+    brandId: number
+    cinemaId: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -980,11 +4388,15 @@ export namespace Prisma {
   export type UserAvgAggregateInputType = {
     id?: true
     balance?: true
+    brandId?: true
+    cinemaId?: true
   }
 
   export type UserSumAggregateInputType = {
     id?: true
     balance?: true
+    brandId?: true
+    cinemaId?: true
   }
 
   export type UserMinAggregateInputType = {
@@ -1004,6 +4416,8 @@ export namespace Prisma {
     codeExpired?: true
     role?: true
     status?: true
+    brandId?: true
+    cinemaId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1025,6 +4439,8 @@ export namespace Prisma {
     codeExpired?: true
     role?: true
     status?: true
+    brandId?: true
+    cinemaId?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1046,6 +4462,8 @@ export namespace Prisma {
     codeExpired?: true
     role?: true
     status?: true
+    brandId?: true
+    cinemaId?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1154,6 +4572,8 @@ export namespace Prisma {
     codeExpired: Date | null
     role: $Enums.Role
     status: $Enums.Status
+    brandId: number | null
+    cinemaId: number | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1194,8 +4614,12 @@ export namespace Prisma {
     codeExpired?: boolean
     role?: boolean
     status?: boolean
+    brandId?: boolean
+    cinemaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    brand?: boolean | User$brandArgs<ExtArgs>
+    cinema?: boolean | User$cinemaArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
 
@@ -1217,15 +4641,24 @@ export namespace Prisma {
     codeExpired?: boolean
     role?: boolean
     status?: boolean
+    brandId?: boolean
+    cinemaId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "emailVerified" | "phone" | "phoneVerified" | "fullName" | "region" | "avatar" | "balance" | "password" | "refreshToken" | "codeId" | "codeExpired" | "role" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "emailVerified" | "phone" | "phoneVerified" | "fullName" | "region" | "avatar" | "balance" | "password" | "refreshToken" | "codeId" | "codeExpired" | "role" | "status" | "brandId" | "cinemaId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    brand?: boolean | User$brandArgs<ExtArgs>
+    cinema?: boolean | User$cinemaArgs<ExtArgs>
+  }
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      brand: Prisma.$CinemaBrandPayload<ExtArgs> | null
+      cinema: Prisma.$CinemaPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       username: string
@@ -1243,6 +4676,8 @@ export namespace Prisma {
       codeExpired: Date | null
       role: $Enums.Role
       status: $Enums.Status
+      brandId: number | null
+      cinemaId: number | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1585,6 +5020,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    brand<T extends User$brandArgs<ExtArgs> = {}>(args?: Subset<T, User$brandArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    cinema<T extends User$cinemaArgs<ExtArgs> = {}>(args?: Subset<T, User$cinemaArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1630,6 +5067,8 @@ export namespace Prisma {
     readonly codeExpired: FieldRef<"User", 'DateTime'>
     readonly role: FieldRef<"User", 'Role'>
     readonly status: FieldRef<"User", 'Status'>
+    readonly brandId: FieldRef<"User", 'Int'>
+    readonly cinemaId: FieldRef<"User", 'Int'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -1649,6 +5088,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1667,6 +5110,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1684,6 +5131,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1733,6 +5184,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1781,6 +5236,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1824,6 +5283,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -1852,6 +5315,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1893,6 +5360,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1919,6 +5390,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1939,6 +5414,44 @@ export namespace Prisma {
   }
 
   /**
+   * User.brand
+   */
+  export type User$brandArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CinemaBrand
+     */
+    select?: CinemaBrandSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CinemaBrand
+     */
+    omit?: CinemaBrandOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaBrandInclude<ExtArgs> | null
+    where?: CinemaBrandWhereInput
+  }
+
+  /**
+   * User.cinema
+   */
+  export type User$cinemaArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Cinema
+     */
+    select?: CinemaSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Cinema
+     */
+    omit?: CinemaOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CinemaInclude<ExtArgs> | null
+    where?: CinemaWhereInput
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1950,6 +5463,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
   }
 
 
@@ -1965,6 +5482,42 @@ export namespace Prisma {
   };
 
   export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const CinemaBrandScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    logo: 'logo',
+    createdAt: 'createdAt'
+  };
+
+  export type CinemaBrandScalarFieldEnum = (typeof CinemaBrandScalarFieldEnum)[keyof typeof CinemaBrandScalarFieldEnum]
+
+
+  export const ProvincesScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug'
+  };
+
+  export type ProvincesScalarFieldEnum = (typeof ProvincesScalarFieldEnum)[keyof typeof ProvincesScalarFieldEnum]
+
+
+  export const CinemaScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    address: 'address',
+    status: 'status',
+    map_link: 'map_link',
+    brandId: 'brandId',
+    provinceId: 'provinceId',
+    description: 'description',
+    createdAt: 'createdAt'
+  };
+
+  export type CinemaScalarFieldEnum = (typeof CinemaScalarFieldEnum)[keyof typeof CinemaScalarFieldEnum]
 
 
   export const UserScalarFieldEnum: {
@@ -1984,6 +5537,8 @@ export namespace Prisma {
     codeExpired: 'codeExpired',
     role: 'role',
     status: 'status',
+    brandId: 'brandId',
+    cinemaId: 'cinemaId',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -2005,6 +5560,34 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const CinemaBrandOrderByRelevanceFieldEnum: {
+    name: 'name',
+    slug: 'slug',
+    logo: 'logo'
+  };
+
+  export type CinemaBrandOrderByRelevanceFieldEnum = (typeof CinemaBrandOrderByRelevanceFieldEnum)[keyof typeof CinemaBrandOrderByRelevanceFieldEnum]
+
+
+  export const ProvincesOrderByRelevanceFieldEnum: {
+    name: 'name',
+    slug: 'slug'
+  };
+
+  export type ProvincesOrderByRelevanceFieldEnum = (typeof ProvincesOrderByRelevanceFieldEnum)[keyof typeof ProvincesOrderByRelevanceFieldEnum]
+
+
+  export const CinemaOrderByRelevanceFieldEnum: {
+    name: 'name',
+    slug: 'slug',
+    address: 'address',
+    map_link: 'map_link',
+    description: 'description'
+  };
+
+  export type CinemaOrderByRelevanceFieldEnum = (typeof CinemaOrderByRelevanceFieldEnum)[keyof typeof CinemaOrderByRelevanceFieldEnum]
 
 
   export const UserOrderByRelevanceFieldEnum: {
@@ -2042,13 +5625,6 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
-    
-
-
-  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -2056,16 +5632,23 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Role'
+   * Reference to a field of type 'Status'
    */
-  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
+  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
     
 
 
   /**
-   * Reference to a field of type 'Status'
+   * Reference to a field of type 'Boolean'
    */
-  export type EnumStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Status'>
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'Role'
+   */
+  export type EnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role'>
     
 
 
@@ -2078,6 +5661,204 @@ export namespace Prisma {
    * Deep Input Types
    */
 
+
+  export type CinemaBrandWhereInput = {
+    AND?: CinemaBrandWhereInput | CinemaBrandWhereInput[]
+    OR?: CinemaBrandWhereInput[]
+    NOT?: CinemaBrandWhereInput | CinemaBrandWhereInput[]
+    id?: IntFilter<"CinemaBrand"> | number
+    name?: StringFilter<"CinemaBrand"> | string
+    slug?: StringFilter<"CinemaBrand"> | string
+    logo?: StringNullableFilter<"CinemaBrand"> | string | null
+    createdAt?: DateTimeFilter<"CinemaBrand"> | Date | string
+    users?: UserListRelationFilter
+    cinemas?: CinemaListRelationFilter
+  }
+
+  export type CinemaBrandOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    logo?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    users?: UserOrderByRelationAggregateInput
+    cinemas?: CinemaOrderByRelationAggregateInput
+    _relevance?: CinemaBrandOrderByRelevanceInput
+  }
+
+  export type CinemaBrandWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    slug?: string
+    AND?: CinemaBrandWhereInput | CinemaBrandWhereInput[]
+    OR?: CinemaBrandWhereInput[]
+    NOT?: CinemaBrandWhereInput | CinemaBrandWhereInput[]
+    logo?: StringNullableFilter<"CinemaBrand"> | string | null
+    createdAt?: DateTimeFilter<"CinemaBrand"> | Date | string
+    users?: UserListRelationFilter
+    cinemas?: CinemaListRelationFilter
+  }, "id" | "name" | "slug">
+
+  export type CinemaBrandOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    logo?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: CinemaBrandCountOrderByAggregateInput
+    _avg?: CinemaBrandAvgOrderByAggregateInput
+    _max?: CinemaBrandMaxOrderByAggregateInput
+    _min?: CinemaBrandMinOrderByAggregateInput
+    _sum?: CinemaBrandSumOrderByAggregateInput
+  }
+
+  export type CinemaBrandScalarWhereWithAggregatesInput = {
+    AND?: CinemaBrandScalarWhereWithAggregatesInput | CinemaBrandScalarWhereWithAggregatesInput[]
+    OR?: CinemaBrandScalarWhereWithAggregatesInput[]
+    NOT?: CinemaBrandScalarWhereWithAggregatesInput | CinemaBrandScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"CinemaBrand"> | number
+    name?: StringWithAggregatesFilter<"CinemaBrand"> | string
+    slug?: StringWithAggregatesFilter<"CinemaBrand"> | string
+    logo?: StringNullableWithAggregatesFilter<"CinemaBrand"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"CinemaBrand"> | Date | string
+  }
+
+  export type ProvincesWhereInput = {
+    AND?: ProvincesWhereInput | ProvincesWhereInput[]
+    OR?: ProvincesWhereInput[]
+    NOT?: ProvincesWhereInput | ProvincesWhereInput[]
+    id?: IntFilter<"Provinces"> | number
+    name?: StringFilter<"Provinces"> | string
+    slug?: StringFilter<"Provinces"> | string
+    cinemas?: CinemaListRelationFilter
+  }
+
+  export type ProvincesOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    cinemas?: CinemaOrderByRelationAggregateInput
+    _relevance?: ProvincesOrderByRelevanceInput
+  }
+
+  export type ProvincesWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    slug?: string
+    AND?: ProvincesWhereInput | ProvincesWhereInput[]
+    OR?: ProvincesWhereInput[]
+    NOT?: ProvincesWhereInput | ProvincesWhereInput[]
+    cinemas?: CinemaListRelationFilter
+  }, "id" | "name" | "slug">
+
+  export type ProvincesOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    _count?: ProvincesCountOrderByAggregateInput
+    _avg?: ProvincesAvgOrderByAggregateInput
+    _max?: ProvincesMaxOrderByAggregateInput
+    _min?: ProvincesMinOrderByAggregateInput
+    _sum?: ProvincesSumOrderByAggregateInput
+  }
+
+  export type ProvincesScalarWhereWithAggregatesInput = {
+    AND?: ProvincesScalarWhereWithAggregatesInput | ProvincesScalarWhereWithAggregatesInput[]
+    OR?: ProvincesScalarWhereWithAggregatesInput[]
+    NOT?: ProvincesScalarWhereWithAggregatesInput | ProvincesScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Provinces"> | number
+    name?: StringWithAggregatesFilter<"Provinces"> | string
+    slug?: StringWithAggregatesFilter<"Provinces"> | string
+  }
+
+  export type CinemaWhereInput = {
+    AND?: CinemaWhereInput | CinemaWhereInput[]
+    OR?: CinemaWhereInput[]
+    NOT?: CinemaWhereInput | CinemaWhereInput[]
+    id?: IntFilter<"Cinema"> | number
+    name?: StringFilter<"Cinema"> | string
+    slug?: StringFilter<"Cinema"> | string
+    address?: StringFilter<"Cinema"> | string
+    status?: EnumStatusFilter<"Cinema"> | $Enums.Status
+    map_link?: StringFilter<"Cinema"> | string
+    brandId?: IntFilter<"Cinema"> | number
+    provinceId?: IntFilter<"Cinema"> | number
+    description?: StringFilter<"Cinema"> | string
+    createdAt?: DateTimeFilter<"Cinema"> | Date | string
+    brand?: XOR<CinemaBrandScalarRelationFilter, CinemaBrandWhereInput>
+    province?: XOR<ProvincesScalarRelationFilter, ProvincesWhereInput>
+    users?: UserListRelationFilter
+  }
+
+  export type CinemaOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    map_link?: SortOrder
+    brandId?: SortOrder
+    provinceId?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    brand?: CinemaBrandOrderByWithRelationInput
+    province?: ProvincesOrderByWithRelationInput
+    users?: UserOrderByRelationAggregateInput
+    _relevance?: CinemaOrderByRelevanceInput
+  }
+
+  export type CinemaWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    slug?: string
+    AND?: CinemaWhereInput | CinemaWhereInput[]
+    OR?: CinemaWhereInput[]
+    NOT?: CinemaWhereInput | CinemaWhereInput[]
+    address?: StringFilter<"Cinema"> | string
+    status?: EnumStatusFilter<"Cinema"> | $Enums.Status
+    map_link?: StringFilter<"Cinema"> | string
+    brandId?: IntFilter<"Cinema"> | number
+    provinceId?: IntFilter<"Cinema"> | number
+    description?: StringFilter<"Cinema"> | string
+    createdAt?: DateTimeFilter<"Cinema"> | Date | string
+    brand?: XOR<CinemaBrandScalarRelationFilter, CinemaBrandWhereInput>
+    province?: XOR<ProvincesScalarRelationFilter, ProvincesWhereInput>
+    users?: UserListRelationFilter
+  }, "id" | "name" | "slug">
+
+  export type CinemaOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    map_link?: SortOrder
+    brandId?: SortOrder
+    provinceId?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    _count?: CinemaCountOrderByAggregateInput
+    _avg?: CinemaAvgOrderByAggregateInput
+    _max?: CinemaMaxOrderByAggregateInput
+    _min?: CinemaMinOrderByAggregateInput
+    _sum?: CinemaSumOrderByAggregateInput
+  }
+
+  export type CinemaScalarWhereWithAggregatesInput = {
+    AND?: CinemaScalarWhereWithAggregatesInput | CinemaScalarWhereWithAggregatesInput[]
+    OR?: CinemaScalarWhereWithAggregatesInput[]
+    NOT?: CinemaScalarWhereWithAggregatesInput | CinemaScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Cinema"> | number
+    name?: StringWithAggregatesFilter<"Cinema"> | string
+    slug?: StringWithAggregatesFilter<"Cinema"> | string
+    address?: StringWithAggregatesFilter<"Cinema"> | string
+    status?: EnumStatusWithAggregatesFilter<"Cinema"> | $Enums.Status
+    map_link?: StringWithAggregatesFilter<"Cinema"> | string
+    brandId?: IntWithAggregatesFilter<"Cinema"> | number
+    provinceId?: IntWithAggregatesFilter<"Cinema"> | number
+    description?: StringWithAggregatesFilter<"Cinema"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Cinema"> | Date | string
+  }
 
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
@@ -2099,8 +5880,12 @@ export namespace Prisma {
     codeExpired?: DateTimeNullableFilter<"User"> | Date | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
     status?: EnumStatusFilter<"User"> | $Enums.Status
+    brandId?: IntNullableFilter<"User"> | number | null
+    cinemaId?: IntNullableFilter<"User"> | number | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    brand?: XOR<CinemaBrandNullableScalarRelationFilter, CinemaBrandWhereInput> | null
+    cinema?: XOR<CinemaNullableScalarRelationFilter, CinemaWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -2120,8 +5905,12 @@ export namespace Prisma {
     codeExpired?: SortOrderInput | SortOrder
     role?: SortOrder
     status?: SortOrder
+    brandId?: SortOrderInput | SortOrder
+    cinemaId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    brand?: CinemaBrandOrderByWithRelationInput
+    cinema?: CinemaOrderByWithRelationInput
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -2145,8 +5934,12 @@ export namespace Prisma {
     codeExpired?: DateTimeNullableFilter<"User"> | Date | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
     status?: EnumStatusFilter<"User"> | $Enums.Status
+    brandId?: IntNullableFilter<"User"> | number | null
+    cinemaId?: IntNullableFilter<"User"> | number | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    brand?: XOR<CinemaBrandNullableScalarRelationFilter, CinemaBrandWhereInput> | null
+    cinema?: XOR<CinemaNullableScalarRelationFilter, CinemaWhereInput> | null
   }, "id" | "username" | "email" | "phone">
 
   export type UserOrderByWithAggregationInput = {
@@ -2166,6 +5959,8 @@ export namespace Prisma {
     codeExpired?: SortOrderInput | SortOrder
     role?: SortOrder
     status?: SortOrder
+    brandId?: SortOrderInput | SortOrder
+    cinemaId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -2195,8 +5990,204 @@ export namespace Prisma {
     codeExpired?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     status?: EnumStatusWithAggregatesFilter<"User"> | $Enums.Status
+    brandId?: IntNullableWithAggregatesFilter<"User"> | number | null
+    cinemaId?: IntNullableWithAggregatesFilter<"User"> | number | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type CinemaBrandCreateInput = {
+    name: string
+    slug: string
+    logo?: string | null
+    createdAt?: Date | string
+    users?: UserCreateNestedManyWithoutBrandInput
+    cinemas?: CinemaCreateNestedManyWithoutBrandInput
+  }
+
+  export type CinemaBrandUncheckedCreateInput = {
+    id?: number
+    name: string
+    slug: string
+    logo?: string | null
+    createdAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutBrandInput
+    cinemas?: CinemaUncheckedCreateNestedManyWithoutBrandInput
+  }
+
+  export type CinemaBrandUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutBrandNestedInput
+    cinemas?: CinemaUpdateManyWithoutBrandNestedInput
+  }
+
+  export type CinemaBrandUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutBrandNestedInput
+    cinemas?: CinemaUncheckedUpdateManyWithoutBrandNestedInput
+  }
+
+  export type CinemaBrandCreateManyInput = {
+    id?: number
+    name: string
+    slug: string
+    logo?: string | null
+    createdAt?: Date | string
+  }
+
+  export type CinemaBrandUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CinemaBrandUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ProvincesCreateInput = {
+    name: string
+    slug: string
+    cinemas?: CinemaCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvincesUncheckedCreateInput = {
+    id?: number
+    name: string
+    slug: string
+    cinemas?: CinemaUncheckedCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvincesUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cinemas?: CinemaUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type ProvincesUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    cinemas?: CinemaUncheckedUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type ProvincesCreateManyInput = {
+    id?: number
+    name: string
+    slug: string
+  }
+
+  export type ProvincesUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProvincesUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CinemaCreateInput = {
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    description: string
+    createdAt?: Date | string
+    brand: CinemaBrandCreateNestedOneWithoutCinemasInput
+    province: ProvincesCreateNestedOneWithoutCinemasInput
+    users?: UserCreateNestedManyWithoutCinemaInput
+  }
+
+  export type CinemaUncheckedCreateInput = {
+    id?: number
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    brandId: number
+    provinceId: number
+    description: string
+    createdAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutCinemaInput
+  }
+
+  export type CinemaUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    brand?: CinemaBrandUpdateOneRequiredWithoutCinemasNestedInput
+    province?: ProvincesUpdateOneRequiredWithoutCinemasNestedInput
+    users?: UserUpdateManyWithoutCinemaNestedInput
+  }
+
+  export type CinemaUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    brandId?: IntFieldUpdateOperationsInput | number
+    provinceId?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutCinemaNestedInput
+  }
+
+  export type CinemaCreateManyInput = {
+    id?: number
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    brandId: number
+    provinceId: number
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type CinemaUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CinemaUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    brandId?: IntFieldUpdateOperationsInput | number
+    provinceId?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateInput = {
@@ -2217,6 +6208,8 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
+    brand?: CinemaBrandCreateNestedOneWithoutUsersInput
+    cinema?: CinemaCreateNestedOneWithoutUsersInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -2236,6 +6229,8 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    brandId?: number | null
+    cinemaId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2258,6 +6253,8 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    brand?: CinemaBrandUpdateOneWithoutUsersNestedInput
+    cinema?: CinemaUpdateOneWithoutUsersNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2277,6 +6274,8 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    brandId?: NullableIntFieldUpdateOperationsInput | number | null
+    cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2298,6 +6297,8 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    brandId?: number | null
+    cinemaId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -2339,6 +6340,8 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    brandId?: NullableIntFieldUpdateOperationsInput | number | null
+    cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2369,11 +6372,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -2389,31 +6387,6 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type EnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[]
-    notIn?: $Enums.Role[]
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
-  }
-
-  export type EnumStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[]
-    notIn?: $Enums.Status[]
-    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
-  }
-
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -2425,88 +6398,67 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
+  export type CinemaListRelationFilter = {
+    every?: CinemaWhereInput
+    some?: CinemaWhereInput
+    none?: CinemaWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
   }
 
-  export type UserOrderByRelevanceInput = {
-    fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
+  export type UserOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CinemaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CinemaBrandOrderByRelevanceInput = {
+    fields: CinemaBrandOrderByRelevanceFieldEnum | CinemaBrandOrderByRelevanceFieldEnum[]
     sort: SortOrder
     search: string
   }
 
-  export type UserCountOrderByAggregateInput = {
+  export type CinemaBrandCountOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    emailVerified?: SortOrder
-    phone?: SortOrder
-    phoneVerified?: SortOrder
-    fullName?: SortOrder
-    region?: SortOrder
-    avatar?: SortOrder
-    balance?: SortOrder
-    password?: SortOrder
-    refreshToken?: SortOrder
-    codeId?: SortOrder
-    codeExpired?: SortOrder
-    role?: SortOrder
-    status?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    logo?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
-  export type UserAvgOrderByAggregateInput = {
+  export type CinemaBrandAvgOrderByAggregateInput = {
     id?: SortOrder
-    balance?: SortOrder
   }
 
-  export type UserMaxOrderByAggregateInput = {
+  export type CinemaBrandMaxOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    emailVerified?: SortOrder
-    phone?: SortOrder
-    phoneVerified?: SortOrder
-    fullName?: SortOrder
-    region?: SortOrder
-    avatar?: SortOrder
-    balance?: SortOrder
-    password?: SortOrder
-    refreshToken?: SortOrder
-    codeId?: SortOrder
-    codeExpired?: SortOrder
-    role?: SortOrder
-    status?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    logo?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
-  export type UserMinOrderByAggregateInput = {
+  export type CinemaBrandMinOrderByAggregateInput = {
     id?: SortOrder
-    username?: SortOrder
-    email?: SortOrder
-    emailVerified?: SortOrder
-    phone?: SortOrder
-    phoneVerified?: SortOrder
-    fullName?: SortOrder
-    region?: SortOrder
-    avatar?: SortOrder
-    balance?: SortOrder
-    password?: SortOrder
-    refreshToken?: SortOrder
-    codeId?: SortOrder
-    codeExpired?: SortOrder
-    role?: SortOrder
-    status?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    logo?: SortOrder
     createdAt?: SortOrder
-    updatedAt?: SortOrder
   }
 
-  export type UserSumOrderByAggregateInput = {
+  export type CinemaBrandSumOrderByAggregateInput = {
     id?: SortOrder
-    balance?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -2543,14 +6495,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -2567,6 +6511,277 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
     _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type ProvincesOrderByRelevanceInput = {
+    fields: ProvincesOrderByRelevanceFieldEnum | ProvincesOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ProvincesCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+  }
+
+  export type ProvincesAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ProvincesMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+  }
+
+  export type ProvincesMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+  }
+
+  export type ProvincesSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type EnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
+  export type CinemaBrandScalarRelationFilter = {
+    is?: CinemaBrandWhereInput
+    isNot?: CinemaBrandWhereInput
+  }
+
+  export type ProvincesScalarRelationFilter = {
+    is?: ProvincesWhereInput
+    isNot?: ProvincesWhereInput
+  }
+
+  export type CinemaOrderByRelevanceInput = {
+    fields: CinemaOrderByRelevanceFieldEnum | CinemaOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CinemaCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    map_link?: SortOrder
+    brandId?: SortOrder
+    provinceId?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CinemaAvgOrderByAggregateInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    provinceId?: SortOrder
+  }
+
+  export type CinemaMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    map_link?: SortOrder
+    brandId?: SortOrder
+    provinceId?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CinemaMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    address?: SortOrder
+    status?: SortOrder
+    map_link?: SortOrder
+    brandId?: SortOrder
+    provinceId?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type CinemaSumOrderByAggregateInput = {
+    id?: SortOrder
+    brandId?: SortOrder
+    provinceId?: SortOrder
+  }
+
+  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type EnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[]
+    notIn?: $Enums.Role[]
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type CinemaBrandNullableScalarRelationFilter = {
+    is?: CinemaBrandWhereInput | null
+    isNot?: CinemaBrandWhereInput | null
+  }
+
+  export type CinemaNullableScalarRelationFilter = {
+    is?: CinemaWhereInput | null
+    isNot?: CinemaWhereInput | null
+  }
+
+  export type UserOrderByRelevanceInput = {
+    fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    emailVerified?: SortOrder
+    phone?: SortOrder
+    phoneVerified?: SortOrder
+    fullName?: SortOrder
+    region?: SortOrder
+    avatar?: SortOrder
+    balance?: SortOrder
+    password?: SortOrder
+    refreshToken?: SortOrder
+    codeId?: SortOrder
+    codeExpired?: SortOrder
+    role?: SortOrder
+    status?: SortOrder
+    brandId?: SortOrder
+    cinemaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    id?: SortOrder
+    balance?: SortOrder
+    brandId?: SortOrder
+    cinemaId?: SortOrder
+  }
+
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    emailVerified?: SortOrder
+    phone?: SortOrder
+    phoneVerified?: SortOrder
+    fullName?: SortOrder
+    region?: SortOrder
+    avatar?: SortOrder
+    balance?: SortOrder
+    password?: SortOrder
+    refreshToken?: SortOrder
+    codeId?: SortOrder
+    codeExpired?: SortOrder
+    role?: SortOrder
+    status?: SortOrder
+    brandId?: SortOrder
+    cinemaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    emailVerified?: SortOrder
+    phone?: SortOrder
+    phoneVerified?: SortOrder
+    fullName?: SortOrder
+    region?: SortOrder
+    avatar?: SortOrder
+    balance?: SortOrder
+    password?: SortOrder
+    refreshToken?: SortOrder
+    codeId?: SortOrder
+    codeExpired?: SortOrder
+    role?: SortOrder
+    status?: SortOrder
+    brandId?: SortOrder
+    cinemaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    id?: SortOrder
+    balance?: SortOrder
+    brandId?: SortOrder
+    cinemaId?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -2593,40 +6808,88 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type EnumStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[]
-    notIn?: $Enums.Status[]
-    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatusFilter<$PrismaModel>
-    _max?: NestedEnumStatusFilter<$PrismaModel>
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type UserCreateNestedManyWithoutBrandInput = {
+    create?: XOR<UserCreateWithoutBrandInput, UserUncheckedCreateWithoutBrandInput> | UserCreateWithoutBrandInput[] | UserUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutBrandInput | UserCreateOrConnectWithoutBrandInput[]
+    createMany?: UserCreateManyBrandInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type CinemaCreateNestedManyWithoutBrandInput = {
+    create?: XOR<CinemaCreateWithoutBrandInput, CinemaUncheckedCreateWithoutBrandInput> | CinemaCreateWithoutBrandInput[] | CinemaUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: CinemaCreateOrConnectWithoutBrandInput | CinemaCreateOrConnectWithoutBrandInput[]
+    createMany?: CinemaCreateManyBrandInputEnvelope
+    connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutBrandInput = {
+    create?: XOR<UserCreateWithoutBrandInput, UserUncheckedCreateWithoutBrandInput> | UserCreateWithoutBrandInput[] | UserUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutBrandInput | UserCreateOrConnectWithoutBrandInput[]
+    createMany?: UserCreateManyBrandInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type CinemaUncheckedCreateNestedManyWithoutBrandInput = {
+    create?: XOR<CinemaCreateWithoutBrandInput, CinemaUncheckedCreateWithoutBrandInput> | CinemaCreateWithoutBrandInput[] | CinemaUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: CinemaCreateOrConnectWithoutBrandInput | CinemaCreateOrConnectWithoutBrandInput[]
+    createMany?: CinemaCreateManyBrandInputEnvelope
+    connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
-  }
-
   export type NullableStringFieldUpdateOperationsInput = {
     set?: string | null
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type UserUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<UserCreateWithoutBrandInput, UserUncheckedCreateWithoutBrandInput> | UserCreateWithoutBrandInput[] | UserUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutBrandInput | UserCreateOrConnectWithoutBrandInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutBrandInput | UserUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: UserCreateManyBrandInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutBrandInput | UserUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutBrandInput | UserUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type CinemaUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<CinemaCreateWithoutBrandInput, CinemaUncheckedCreateWithoutBrandInput> | CinemaCreateWithoutBrandInput[] | CinemaUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: CinemaCreateOrConnectWithoutBrandInput | CinemaCreateOrConnectWithoutBrandInput[]
+    upsert?: CinemaUpsertWithWhereUniqueWithoutBrandInput | CinemaUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: CinemaCreateManyBrandInputEnvelope
+    set?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    disconnect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    delete?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    update?: CinemaUpdateWithWhereUniqueWithoutBrandInput | CinemaUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: CinemaUpdateManyWithWhereWithoutBrandInput | CinemaUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: CinemaScalarWhereInput | CinemaScalarWhereInput[]
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -2637,6 +6900,166 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type UserUncheckedUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<UserCreateWithoutBrandInput, UserUncheckedCreateWithoutBrandInput> | UserCreateWithoutBrandInput[] | UserUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutBrandInput | UserCreateOrConnectWithoutBrandInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutBrandInput | UserUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: UserCreateManyBrandInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutBrandInput | UserUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutBrandInput | UserUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type CinemaUncheckedUpdateManyWithoutBrandNestedInput = {
+    create?: XOR<CinemaCreateWithoutBrandInput, CinemaUncheckedCreateWithoutBrandInput> | CinemaCreateWithoutBrandInput[] | CinemaUncheckedCreateWithoutBrandInput[]
+    connectOrCreate?: CinemaCreateOrConnectWithoutBrandInput | CinemaCreateOrConnectWithoutBrandInput[]
+    upsert?: CinemaUpsertWithWhereUniqueWithoutBrandInput | CinemaUpsertWithWhereUniqueWithoutBrandInput[]
+    createMany?: CinemaCreateManyBrandInputEnvelope
+    set?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    disconnect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    delete?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    update?: CinemaUpdateWithWhereUniqueWithoutBrandInput | CinemaUpdateWithWhereUniqueWithoutBrandInput[]
+    updateMany?: CinemaUpdateManyWithWhereWithoutBrandInput | CinemaUpdateManyWithWhereWithoutBrandInput[]
+    deleteMany?: CinemaScalarWhereInput | CinemaScalarWhereInput[]
+  }
+
+  export type CinemaCreateNestedManyWithoutProvinceInput = {
+    create?: XOR<CinemaCreateWithoutProvinceInput, CinemaUncheckedCreateWithoutProvinceInput> | CinemaCreateWithoutProvinceInput[] | CinemaUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: CinemaCreateOrConnectWithoutProvinceInput | CinemaCreateOrConnectWithoutProvinceInput[]
+    createMany?: CinemaCreateManyProvinceInputEnvelope
+    connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+  }
+
+  export type CinemaUncheckedCreateNestedManyWithoutProvinceInput = {
+    create?: XOR<CinemaCreateWithoutProvinceInput, CinemaUncheckedCreateWithoutProvinceInput> | CinemaCreateWithoutProvinceInput[] | CinemaUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: CinemaCreateOrConnectWithoutProvinceInput | CinemaCreateOrConnectWithoutProvinceInput[]
+    createMany?: CinemaCreateManyProvinceInputEnvelope
+    connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+  }
+
+  export type CinemaUpdateManyWithoutProvinceNestedInput = {
+    create?: XOR<CinemaCreateWithoutProvinceInput, CinemaUncheckedCreateWithoutProvinceInput> | CinemaCreateWithoutProvinceInput[] | CinemaUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: CinemaCreateOrConnectWithoutProvinceInput | CinemaCreateOrConnectWithoutProvinceInput[]
+    upsert?: CinemaUpsertWithWhereUniqueWithoutProvinceInput | CinemaUpsertWithWhereUniqueWithoutProvinceInput[]
+    createMany?: CinemaCreateManyProvinceInputEnvelope
+    set?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    disconnect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    delete?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    update?: CinemaUpdateWithWhereUniqueWithoutProvinceInput | CinemaUpdateWithWhereUniqueWithoutProvinceInput[]
+    updateMany?: CinemaUpdateManyWithWhereWithoutProvinceInput | CinemaUpdateManyWithWhereWithoutProvinceInput[]
+    deleteMany?: CinemaScalarWhereInput | CinemaScalarWhereInput[]
+  }
+
+  export type CinemaUncheckedUpdateManyWithoutProvinceNestedInput = {
+    create?: XOR<CinemaCreateWithoutProvinceInput, CinemaUncheckedCreateWithoutProvinceInput> | CinemaCreateWithoutProvinceInput[] | CinemaUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: CinemaCreateOrConnectWithoutProvinceInput | CinemaCreateOrConnectWithoutProvinceInput[]
+    upsert?: CinemaUpsertWithWhereUniqueWithoutProvinceInput | CinemaUpsertWithWhereUniqueWithoutProvinceInput[]
+    createMany?: CinemaCreateManyProvinceInputEnvelope
+    set?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    disconnect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    delete?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+    update?: CinemaUpdateWithWhereUniqueWithoutProvinceInput | CinemaUpdateWithWhereUniqueWithoutProvinceInput[]
+    updateMany?: CinemaUpdateManyWithWhereWithoutProvinceInput | CinemaUpdateManyWithWhereWithoutProvinceInput[]
+    deleteMany?: CinemaScalarWhereInput | CinemaScalarWhereInput[]
+  }
+
+  export type CinemaBrandCreateNestedOneWithoutCinemasInput = {
+    create?: XOR<CinemaBrandCreateWithoutCinemasInput, CinemaBrandUncheckedCreateWithoutCinemasInput>
+    connectOrCreate?: CinemaBrandCreateOrConnectWithoutCinemasInput
+    connect?: CinemaBrandWhereUniqueInput
+  }
+
+  export type ProvincesCreateNestedOneWithoutCinemasInput = {
+    create?: XOR<ProvincesCreateWithoutCinemasInput, ProvincesUncheckedCreateWithoutCinemasInput>
+    connectOrCreate?: ProvincesCreateOrConnectWithoutCinemasInput
+    connect?: ProvincesWhereUniqueInput
+  }
+
+  export type UserCreateNestedManyWithoutCinemaInput = {
+    create?: XOR<UserCreateWithoutCinemaInput, UserUncheckedCreateWithoutCinemaInput> | UserCreateWithoutCinemaInput[] | UserUncheckedCreateWithoutCinemaInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutCinemaInput | UserCreateOrConnectWithoutCinemaInput[]
+    createMany?: UserCreateManyCinemaInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutCinemaInput = {
+    create?: XOR<UserCreateWithoutCinemaInput, UserUncheckedCreateWithoutCinemaInput> | UserCreateWithoutCinemaInput[] | UserUncheckedCreateWithoutCinemaInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutCinemaInput | UserCreateOrConnectWithoutCinemaInput[]
+    createMany?: UserCreateManyCinemaInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
+  export type EnumStatusFieldUpdateOperationsInput = {
+    set?: $Enums.Status
+  }
+
+  export type CinemaBrandUpdateOneRequiredWithoutCinemasNestedInput = {
+    create?: XOR<CinemaBrandCreateWithoutCinemasInput, CinemaBrandUncheckedCreateWithoutCinemasInput>
+    connectOrCreate?: CinemaBrandCreateOrConnectWithoutCinemasInput
+    upsert?: CinemaBrandUpsertWithoutCinemasInput
+    connect?: CinemaBrandWhereUniqueInput
+    update?: XOR<XOR<CinemaBrandUpdateToOneWithWhereWithoutCinemasInput, CinemaBrandUpdateWithoutCinemasInput>, CinemaBrandUncheckedUpdateWithoutCinemasInput>
+  }
+
+  export type ProvincesUpdateOneRequiredWithoutCinemasNestedInput = {
+    create?: XOR<ProvincesCreateWithoutCinemasInput, ProvincesUncheckedCreateWithoutCinemasInput>
+    connectOrCreate?: ProvincesCreateOrConnectWithoutCinemasInput
+    upsert?: ProvincesUpsertWithoutCinemasInput
+    connect?: ProvincesWhereUniqueInput
+    update?: XOR<XOR<ProvincesUpdateToOneWithWhereWithoutCinemasInput, ProvincesUpdateWithoutCinemasInput>, ProvincesUncheckedUpdateWithoutCinemasInput>
+  }
+
+  export type UserUpdateManyWithoutCinemaNestedInput = {
+    create?: XOR<UserCreateWithoutCinemaInput, UserUncheckedCreateWithoutCinemaInput> | UserCreateWithoutCinemaInput[] | UserUncheckedCreateWithoutCinemaInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutCinemaInput | UserCreateOrConnectWithoutCinemaInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutCinemaInput | UserUpsertWithWhereUniqueWithoutCinemaInput[]
+    createMany?: UserCreateManyCinemaInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutCinemaInput | UserUpdateWithWhereUniqueWithoutCinemaInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutCinemaInput | UserUpdateManyWithWhereWithoutCinemaInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutCinemaNestedInput = {
+    create?: XOR<UserCreateWithoutCinemaInput, UserUncheckedCreateWithoutCinemaInput> | UserCreateWithoutCinemaInput[] | UserUncheckedCreateWithoutCinemaInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutCinemaInput | UserCreateOrConnectWithoutCinemaInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutCinemaInput | UserUpsertWithWhereUniqueWithoutCinemaInput[]
+    createMany?: UserCreateManyCinemaInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutCinemaInput | UserUpdateWithWhereUniqueWithoutCinemaInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutCinemaInput | UserUpdateManyWithWhereWithoutCinemaInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
+  export type CinemaBrandCreateNestedOneWithoutUsersInput = {
+    create?: XOR<CinemaBrandCreateWithoutUsersInput, CinemaBrandUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: CinemaBrandCreateOrConnectWithoutUsersInput
+    connect?: CinemaBrandWhereUniqueInput
+  }
+
+  export type CinemaCreateNestedOneWithoutUsersInput = {
+    create?: XOR<CinemaCreateWithoutUsersInput, CinemaUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: CinemaCreateOrConnectWithoutUsersInput
+    connect?: CinemaWhereUniqueInput
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type NullableDateTimeFieldUpdateOperationsInput = {
     set?: Date | string | null
   }
@@ -2645,12 +7068,32 @@ export namespace Prisma {
     set?: $Enums.Role
   }
 
-  export type EnumStatusFieldUpdateOperationsInput = {
-    set?: $Enums.Status
+  export type CinemaBrandUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<CinemaBrandCreateWithoutUsersInput, CinemaBrandUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: CinemaBrandCreateOrConnectWithoutUsersInput
+    upsert?: CinemaBrandUpsertWithoutUsersInput
+    disconnect?: CinemaBrandWhereInput | boolean
+    delete?: CinemaBrandWhereInput | boolean
+    connect?: CinemaBrandWhereUniqueInput
+    update?: XOR<XOR<CinemaBrandUpdateToOneWithWhereWithoutUsersInput, CinemaBrandUpdateWithoutUsersInput>, CinemaBrandUncheckedUpdateWithoutUsersInput>
   }
 
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
+  export type CinemaUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<CinemaCreateWithoutUsersInput, CinemaUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: CinemaCreateOrConnectWithoutUsersInput
+    upsert?: CinemaUpsertWithoutUsersInput
+    disconnect?: CinemaWhereInput | boolean
+    delete?: CinemaWhereInput | boolean
+    connect?: CinemaWhereUniqueInput
+    update?: XOR<XOR<CinemaUpdateToOneWithWhereWithoutUsersInput, CinemaUpdateWithoutUsersInput>, CinemaUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2679,11 +7122,6 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -2697,31 +7135,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
-  export type NestedEnumRoleFilter<$PrismaModel = never> = {
-    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
-    in?: $Enums.Role[]
-    notIn?: $Enums.Role[]
-    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
-  }
-
-  export type NestedEnumStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[]
-    notIn?: $Enums.Status[]
-    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -2780,14 +7193,6 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | null
@@ -2817,6 +7222,68 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusFilter<$PrismaModel> | $Enums.Status
+  }
+
+  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.Status[]
+    notIn?: $Enums.Status[]
+    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumStatusFilter<$PrismaModel>
+    _max?: NestedEnumStatusFilter<$PrismaModel>
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedEnumRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.Role | EnumRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.Role[]
+    notIn?: $Enums.Role[]
+    not?: NestedEnumRoleFilter<$PrismaModel> | $Enums.Role
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
     in?: Date[] | string[] | null
@@ -2841,28 +7308,789 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
-  export type NestedEnumStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.Status | EnumStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.Status[]
-    notIn?: $Enums.Status[]
-    not?: NestedEnumStatusWithAggregatesFilter<$PrismaModel> | $Enums.Status
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumStatusFilter<$PrismaModel>
-    _max?: NestedEnumStatusFilter<$PrismaModel>
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UserCreateWithoutBrandInput = {
+    username: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    region?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    cinema?: CinemaCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutBrandInput = {
+    id?: number
+    username: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    region?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    cinemaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutBrandInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBrandInput, UserUncheckedCreateWithoutBrandInput>
+  }
+
+  export type UserCreateManyBrandInputEnvelope = {
+    data: UserCreateManyBrandInput | UserCreateManyBrandInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CinemaCreateWithoutBrandInput = {
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    description: string
+    createdAt?: Date | string
+    province: ProvincesCreateNestedOneWithoutCinemasInput
+    users?: UserCreateNestedManyWithoutCinemaInput
+  }
+
+  export type CinemaUncheckedCreateWithoutBrandInput = {
+    id?: number
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    provinceId: number
+    description: string
+    createdAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutCinemaInput
+  }
+
+  export type CinemaCreateOrConnectWithoutBrandInput = {
+    where: CinemaWhereUniqueInput
+    create: XOR<CinemaCreateWithoutBrandInput, CinemaUncheckedCreateWithoutBrandInput>
+  }
+
+  export type CinemaCreateManyBrandInputEnvelope = {
+    data: CinemaCreateManyBrandInput | CinemaCreateManyBrandInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutBrandInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutBrandInput, UserUncheckedUpdateWithoutBrandInput>
+    create: XOR<UserCreateWithoutBrandInput, UserUncheckedCreateWithoutBrandInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutBrandInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutBrandInput, UserUncheckedUpdateWithoutBrandInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutBrandInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutBrandInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[]
+    OR?: UserScalarWhereInput[]
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
+    id?: IntFilter<"User"> | number
+    username?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    emailVerified?: BoolFilter<"User"> | boolean
+    phone?: StringNullableFilter<"User"> | string | null
+    phoneVerified?: BoolFilter<"User"> | boolean
+    fullName?: StringNullableFilter<"User"> | string | null
+    region?: StringNullableFilter<"User"> | string | null
+    avatar?: StringNullableFilter<"User"> | string | null
+    balance?: IntFilter<"User"> | number
+    password?: StringFilter<"User"> | string
+    refreshToken?: StringNullableFilter<"User"> | string | null
+    codeId?: StringNullableFilter<"User"> | string | null
+    codeExpired?: DateTimeNullableFilter<"User"> | Date | string | null
+    role?: EnumRoleFilter<"User"> | $Enums.Role
+    status?: EnumStatusFilter<"User"> | $Enums.Status
+    brandId?: IntNullableFilter<"User"> | number | null
+    cinemaId?: IntNullableFilter<"User"> | number | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+  }
+
+  export type CinemaUpsertWithWhereUniqueWithoutBrandInput = {
+    where: CinemaWhereUniqueInput
+    update: XOR<CinemaUpdateWithoutBrandInput, CinemaUncheckedUpdateWithoutBrandInput>
+    create: XOR<CinemaCreateWithoutBrandInput, CinemaUncheckedCreateWithoutBrandInput>
+  }
+
+  export type CinemaUpdateWithWhereUniqueWithoutBrandInput = {
+    where: CinemaWhereUniqueInput
+    data: XOR<CinemaUpdateWithoutBrandInput, CinemaUncheckedUpdateWithoutBrandInput>
+  }
+
+  export type CinemaUpdateManyWithWhereWithoutBrandInput = {
+    where: CinemaScalarWhereInput
+    data: XOR<CinemaUpdateManyMutationInput, CinemaUncheckedUpdateManyWithoutBrandInput>
+  }
+
+  export type CinemaScalarWhereInput = {
+    AND?: CinemaScalarWhereInput | CinemaScalarWhereInput[]
+    OR?: CinemaScalarWhereInput[]
+    NOT?: CinemaScalarWhereInput | CinemaScalarWhereInput[]
+    id?: IntFilter<"Cinema"> | number
+    name?: StringFilter<"Cinema"> | string
+    slug?: StringFilter<"Cinema"> | string
+    address?: StringFilter<"Cinema"> | string
+    status?: EnumStatusFilter<"Cinema"> | $Enums.Status
+    map_link?: StringFilter<"Cinema"> | string
+    brandId?: IntFilter<"Cinema"> | number
+    provinceId?: IntFilter<"Cinema"> | number
+    description?: StringFilter<"Cinema"> | string
+    createdAt?: DateTimeFilter<"Cinema"> | Date | string
+  }
+
+  export type CinemaCreateWithoutProvinceInput = {
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    description: string
+    createdAt?: Date | string
+    brand: CinemaBrandCreateNestedOneWithoutCinemasInput
+    users?: UserCreateNestedManyWithoutCinemaInput
+  }
+
+  export type CinemaUncheckedCreateWithoutProvinceInput = {
+    id?: number
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    brandId: number
+    description: string
+    createdAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutCinemaInput
+  }
+
+  export type CinemaCreateOrConnectWithoutProvinceInput = {
+    where: CinemaWhereUniqueInput
+    create: XOR<CinemaCreateWithoutProvinceInput, CinemaUncheckedCreateWithoutProvinceInput>
+  }
+
+  export type CinemaCreateManyProvinceInputEnvelope = {
+    data: CinemaCreateManyProvinceInput | CinemaCreateManyProvinceInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CinemaUpsertWithWhereUniqueWithoutProvinceInput = {
+    where: CinemaWhereUniqueInput
+    update: XOR<CinemaUpdateWithoutProvinceInput, CinemaUncheckedUpdateWithoutProvinceInput>
+    create: XOR<CinemaCreateWithoutProvinceInput, CinemaUncheckedCreateWithoutProvinceInput>
+  }
+
+  export type CinemaUpdateWithWhereUniqueWithoutProvinceInput = {
+    where: CinemaWhereUniqueInput
+    data: XOR<CinemaUpdateWithoutProvinceInput, CinemaUncheckedUpdateWithoutProvinceInput>
+  }
+
+  export type CinemaUpdateManyWithWhereWithoutProvinceInput = {
+    where: CinemaScalarWhereInput
+    data: XOR<CinemaUpdateManyMutationInput, CinemaUncheckedUpdateManyWithoutProvinceInput>
+  }
+
+  export type CinemaBrandCreateWithoutCinemasInput = {
+    name: string
+    slug: string
+    logo?: string | null
+    createdAt?: Date | string
+    users?: UserCreateNestedManyWithoutBrandInput
+  }
+
+  export type CinemaBrandUncheckedCreateWithoutCinemasInput = {
+    id?: number
+    name: string
+    slug: string
+    logo?: string | null
+    createdAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutBrandInput
+  }
+
+  export type CinemaBrandCreateOrConnectWithoutCinemasInput = {
+    where: CinemaBrandWhereUniqueInput
+    create: XOR<CinemaBrandCreateWithoutCinemasInput, CinemaBrandUncheckedCreateWithoutCinemasInput>
+  }
+
+  export type ProvincesCreateWithoutCinemasInput = {
+    name: string
+    slug: string
+  }
+
+  export type ProvincesUncheckedCreateWithoutCinemasInput = {
+    id?: number
+    name: string
+    slug: string
+  }
+
+  export type ProvincesCreateOrConnectWithoutCinemasInput = {
+    where: ProvincesWhereUniqueInput
+    create: XOR<ProvincesCreateWithoutCinemasInput, ProvincesUncheckedCreateWithoutCinemasInput>
+  }
+
+  export type UserCreateWithoutCinemaInput = {
+    username: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    region?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    brand?: CinemaBrandCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutCinemaInput = {
+    id?: number
+    username: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    region?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    brandId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutCinemaInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCinemaInput, UserUncheckedCreateWithoutCinemaInput>
+  }
+
+  export type UserCreateManyCinemaInputEnvelope = {
+    data: UserCreateManyCinemaInput | UserCreateManyCinemaInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CinemaBrandUpsertWithoutCinemasInput = {
+    update: XOR<CinemaBrandUpdateWithoutCinemasInput, CinemaBrandUncheckedUpdateWithoutCinemasInput>
+    create: XOR<CinemaBrandCreateWithoutCinemasInput, CinemaBrandUncheckedCreateWithoutCinemasInput>
+    where?: CinemaBrandWhereInput
+  }
+
+  export type CinemaBrandUpdateToOneWithWhereWithoutCinemasInput = {
+    where?: CinemaBrandWhereInput
+    data: XOR<CinemaBrandUpdateWithoutCinemasInput, CinemaBrandUncheckedUpdateWithoutCinemasInput>
+  }
+
+  export type CinemaBrandUpdateWithoutCinemasInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutBrandNestedInput
+  }
+
+  export type CinemaBrandUncheckedUpdateWithoutCinemasInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutBrandNestedInput
+  }
+
+  export type ProvincesUpsertWithoutCinemasInput = {
+    update: XOR<ProvincesUpdateWithoutCinemasInput, ProvincesUncheckedUpdateWithoutCinemasInput>
+    create: XOR<ProvincesCreateWithoutCinemasInput, ProvincesUncheckedCreateWithoutCinemasInput>
+    where?: ProvincesWhereInput
+  }
+
+  export type ProvincesUpdateToOneWithWhereWithoutCinemasInput = {
+    where?: ProvincesWhereInput
+    data: XOR<ProvincesUpdateWithoutCinemasInput, ProvincesUncheckedUpdateWithoutCinemasInput>
+  }
+
+  export type ProvincesUpdateWithoutCinemasInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ProvincesUncheckedUpdateWithoutCinemasInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type UserUpsertWithWhereUniqueWithoutCinemaInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutCinemaInput, UserUncheckedUpdateWithoutCinemaInput>
+    create: XOR<UserCreateWithoutCinemaInput, UserUncheckedCreateWithoutCinemaInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutCinemaInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutCinemaInput, UserUncheckedUpdateWithoutCinemaInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutCinemaInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutCinemaInput>
+  }
+
+  export type CinemaBrandCreateWithoutUsersInput = {
+    name: string
+    slug: string
+    logo?: string | null
+    createdAt?: Date | string
+    cinemas?: CinemaCreateNestedManyWithoutBrandInput
+  }
+
+  export type CinemaBrandUncheckedCreateWithoutUsersInput = {
+    id?: number
+    name: string
+    slug: string
+    logo?: string | null
+    createdAt?: Date | string
+    cinemas?: CinemaUncheckedCreateNestedManyWithoutBrandInput
+  }
+
+  export type CinemaBrandCreateOrConnectWithoutUsersInput = {
+    where: CinemaBrandWhereUniqueInput
+    create: XOR<CinemaBrandCreateWithoutUsersInput, CinemaBrandUncheckedCreateWithoutUsersInput>
+  }
+
+  export type CinemaCreateWithoutUsersInput = {
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    description: string
+    createdAt?: Date | string
+    brand: CinemaBrandCreateNestedOneWithoutCinemasInput
+    province: ProvincesCreateNestedOneWithoutCinemasInput
+  }
+
+  export type CinemaUncheckedCreateWithoutUsersInput = {
+    id?: number
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    brandId: number
+    provinceId: number
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type CinemaCreateOrConnectWithoutUsersInput = {
+    where: CinemaWhereUniqueInput
+    create: XOR<CinemaCreateWithoutUsersInput, CinemaUncheckedCreateWithoutUsersInput>
+  }
+
+  export type CinemaBrandUpsertWithoutUsersInput = {
+    update: XOR<CinemaBrandUpdateWithoutUsersInput, CinemaBrandUncheckedUpdateWithoutUsersInput>
+    create: XOR<CinemaBrandCreateWithoutUsersInput, CinemaBrandUncheckedCreateWithoutUsersInput>
+    where?: CinemaBrandWhereInput
+  }
+
+  export type CinemaBrandUpdateToOneWithWhereWithoutUsersInput = {
+    where?: CinemaBrandWhereInput
+    data: XOR<CinemaBrandUpdateWithoutUsersInput, CinemaBrandUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type CinemaBrandUpdateWithoutUsersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cinemas?: CinemaUpdateManyWithoutBrandNestedInput
+  }
+
+  export type CinemaBrandUncheckedUpdateWithoutUsersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    logo?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cinemas?: CinemaUncheckedUpdateManyWithoutBrandNestedInput
+  }
+
+  export type CinemaUpsertWithoutUsersInput = {
+    update: XOR<CinemaUpdateWithoutUsersInput, CinemaUncheckedUpdateWithoutUsersInput>
+    create: XOR<CinemaCreateWithoutUsersInput, CinemaUncheckedCreateWithoutUsersInput>
+    where?: CinemaWhereInput
+  }
+
+  export type CinemaUpdateToOneWithWhereWithoutUsersInput = {
+    where?: CinemaWhereInput
+    data: XOR<CinemaUpdateWithoutUsersInput, CinemaUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type CinemaUpdateWithoutUsersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    brand?: CinemaBrandUpdateOneRequiredWithoutCinemasNestedInput
+    province?: ProvincesUpdateOneRequiredWithoutCinemasNestedInput
+  }
+
+  export type CinemaUncheckedUpdateWithoutUsersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    brandId?: IntFieldUpdateOperationsInput | number
+    provinceId?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateManyBrandInput = {
+    id?: number
+    username: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    region?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    cinemaId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type CinemaCreateManyBrandInput = {
+    id?: number
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    provinceId: number
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type UserUpdateWithoutBrandInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cinema?: CinemaUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBrandInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyWithoutBrandInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CinemaUpdateWithoutBrandInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    province?: ProvincesUpdateOneRequiredWithoutCinemasNestedInput
+    users?: UserUpdateManyWithoutCinemaNestedInput
+  }
+
+  export type CinemaUncheckedUpdateWithoutBrandInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    provinceId?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutCinemaNestedInput
+  }
+
+  export type CinemaUncheckedUpdateManyWithoutBrandInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    provinceId?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CinemaCreateManyProvinceInput = {
+    id?: number
+    name: string
+    slug: string
+    address: string
+    status?: $Enums.Status
+    map_link: string
+    brandId: number
+    description: string
+    createdAt?: Date | string
+  }
+
+  export type CinemaUpdateWithoutProvinceInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    brand?: CinemaBrandUpdateOneRequiredWithoutCinemasNestedInput
+    users?: UserUpdateManyWithoutCinemaNestedInput
+  }
+
+  export type CinemaUncheckedUpdateWithoutProvinceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    brandId?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutCinemaNestedInput
+  }
+
+  export type CinemaUncheckedUpdateManyWithoutProvinceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    address?: StringFieldUpdateOperationsInput | string
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    map_link?: StringFieldUpdateOperationsInput | string
+    brandId?: IntFieldUpdateOperationsInput | number
+    description?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserCreateManyCinemaInput = {
+    id?: number
+    username: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    region?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    brandId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUpdateWithoutCinemaInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    brand?: CinemaBrandUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCinemaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    brandId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyWithoutCinemaInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    region?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    brandId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

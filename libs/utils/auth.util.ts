@@ -36,7 +36,18 @@ export const isCodeExpired = (expiredAt: Date | null): boolean => {
   return dayjs().isAfter(expiredAt);
 };
 
-export function isCodeStillValid(expiredAt: Date | null): boolean {
+export const isCodeStillValid = (expiredAt: Date | null): boolean => {
   if (!expiredAt) return true;
   return dayjs().isBefore(expiredAt);
 }
+
+export const generateRandomPassword = (): string => {
+  const generatedCodes = new Set<string>();
+  let code;
+  do {
+    code = Math.random().toString(36).substr(2, 6).toUpperCase();
+  } while (generatedCodes.has(code));
+
+  generatedCodes.add(code);
+  return code;
+};

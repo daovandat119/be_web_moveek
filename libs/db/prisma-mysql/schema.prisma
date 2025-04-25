@@ -14,6 +14,7 @@ enum Role {
   CINEMA_MANAGER
   COUNTER_STAFF
   USER
+  REVIEWER
 }
 
 enum Status {
@@ -24,44 +25,67 @@ enum Status {
 model CinemaBrand {
   id        Int      @id @default(autoincrement())
   name      String   @unique
+  slug      String   @unique
   logo      String?
   users     User[]
   cinemas   Cinema[]
   createdAt DateTime @default(now())
+
+  @@index([slug])
+}
+
+model Provinces {
+  id      Int      @id @default(autoincrement())
+  name    String   @unique
+  slug    String   @unique
+  cinemas Cinema[]
+
+  @@index([slug])
 }
 
 model Cinema {
-  id        Int      @id @default(autoincrement())
-  name      String
-  address   String
-  brandId   Int
-  brand     CinemaBrand @relation(fields: [brandId], references: [id])
-  users     User[]
-  createdAt DateTime    @default(now())
+  id            Int    @id @default(autoincrement())
+  name          String @unique
+  slug          String @unique
+  address       String
+  status        Status       @default(ACTIVE)
+  map_link      String
+  brandId       Int
+  provinceId    Int
+  description   String @db.Text
+
+  brand    CinemaBrand @relation(fields: [brandId], references: [id])
+  province Provinces   @relation(fields: [provinceId], references: [id])
+  users    User[]
+
+  createdAt DateTime @default(now())
+
+  @@index([slug])
 }
 
 model User {
-  id            Int       @id @default(autoincrement())
-  username      String    @unique
-  email         String    @unique
-  emailVerified Boolean   @default(false) @map("email_verified")
-  phone         String?   @unique
-  phoneVerified Boolean   @default(false) @map("phone_verified")
-  fullName      String?   @map("full_name")
+  id            Int          @id @default(autoincrement())
+  username      String       @unique
+  email         String       @unique
+  emailVerified Boolean      @default(false) @map("email_verified")
+  phone         String?      @unique
+  phoneVerified Boolean      @default(false) @map("phone_verified")
+  fullName      String?      @map("full_name")
   region        String?
   avatar        String?
-  balance       Int       @default(0)
+  balance       Int          @default(0)
   password      String
-  refreshToken  String?   @map("refresh_token")
-  codeId        String?   @map("code_id")
-  codeExpired   DateTime? @map("code_expired")
-  role          Role      @default(USER)
-  status        Status    @default(INACTIVE)
-  brandId       Int?      
+  refreshToken  String?      @map("refresh_token") @db.Text
+  codeId        String?      @map("code_id")
+  codeExpired   DateTime?    @map("code_expired")
+  role          Role         @default(USER)
+  status        Status       @default(INACTIVE)
+  brandId       Int?
   brand         CinemaBrand? @relation(fields: [brandId], references: [id])
   cinemaId      Int?
   cinema        Cinema?      @relation(fields: [cinemaId], references: [id])
-  createdAt     DateTime  @default(now()) @map("created_at")
-  updatedAt     DateTime  @updatedAt @map("updated_at")
-}
+  createdAt     DateTime     @default(now()) @map("created_at")
+  updatedAt     DateTime     @updatedAt @map("updated_at")
 
+  @@index([brandId, cinemaId])
+}

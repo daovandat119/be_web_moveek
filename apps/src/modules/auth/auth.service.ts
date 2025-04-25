@@ -63,7 +63,7 @@ export class AuthService {
   }
 
   async login(user: any, res: Response) {
-    const payload = { sub: user.id, username: user.username, role: user.role };
+    const payload = { id: user.id, username: user.username, role: user.role };
 
     const accessToken = generateAccessToken(
       this.jwtService,
@@ -77,7 +77,7 @@ export class AuthService {
       payload,
     );
 
-    await this.userService.updateRefreshToken(payload.sub, refreshToken);
+    await this.userService.updateRefreshToken(payload.id, refreshToken);
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,

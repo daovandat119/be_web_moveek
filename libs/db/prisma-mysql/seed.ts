@@ -1,48 +1,52 @@
-import { PrismaClient as MysqlClient } from '../../generated/prisma-mysql';
+import { PrismaClient as MysqlClient, Role, Status } from '../../generated/prisma-mysql';
 import * as bcrypt from 'bcryptjs';
 
 const prisma = new MysqlClient();
 
 async function main() {
-  const passwordHash = await bcrypt.hash('password123', 10);
+  const passwordHash = await bcrypt.hash('123456', 10);
 
-  await prisma.user.createMany({
+  const provincesData = [
+    { name: 'Hà Nội', slug: 'ha-noi' },
+    { name: 'TP. Hồ Chí Minh', slug: 'tp-ho-chi-minh' },
+    { name: 'Đà Nẵng', slug: 'da-nang' },
+    { name: 'Cần Thơ', slug: 'can-tho' },
+  ];
+
+  const provinces = await Promise.all(
+    provincesData.map((p) =>
+      prisma.provinces.upsert({
+        where: { slug: p.slug },
+        update: {},
+        create: p,
+      }),
+    ),
+  );
+
+  
+  const users = await prisma.user.createMany({
     data: [
       {
-        username: 'admin',
-        email: 'admin@example.com',
-        fullName: 'Admin User',
-        phone: '0123456789',
+        username: 'superadmin',
+        email: 'superadmin@example.com',
+        fullName: 'Super Admin',
+        phone: '0900000001',
         phoneVerified: true,
         region: 'VN',
         avatar: '',
         balance: 100000,
         password: passwordHash,
-        refreshToken: undefined,
-        role: 'ADMIN',
-        status: 'ACTIVE',
+        refreshToken: null,
+        role: Role.SUPER_ADMIN,
+        status: Status.ACTIVE,
         emailVerified: true,
       },
-      {
-        username: 'user1',
-        email: 'user1@example.com',
-        fullName: 'User One',
-        phone: '0987654321',
-        phoneVerified: false,
-        region: 'VN',
-        avatar: '',
-        balance: 50000,
-        password: passwordHash,
-        refreshToken: undefined,
-        role: 'USER',
-        status: 'INACTIVE',
-        emailVerified: false,
-      },
+
     ],
     skipDuplicates: true,
   });
 
-  console.log('✅ Seed completed');
+  console.log('✅ Seed tất cả bảng với 4 dòng dữ liệu completed');
 }
 
 main()

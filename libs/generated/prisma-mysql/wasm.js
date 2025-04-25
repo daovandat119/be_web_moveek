@@ -117,6 +117,33 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.CinemaBrandScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  logo: 'logo',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.ProvincesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug'
+};
+
+exports.Prisma.CinemaScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  address: 'address',
+  status: 'status',
+  map_link: 'map_link',
+  brandId: 'brandId',
+  provinceId: 'provinceId',
+  description: 'description',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   username: 'username',
@@ -134,6 +161,8 @@ exports.Prisma.UserScalarFieldEnum = {
   codeExpired: 'codeExpired',
   role: 'role',
   status: 'status',
+  brandId: 'brandId',
+  cinemaId: 'cinemaId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -148,6 +177,25 @@ exports.Prisma.NullsOrder = {
   last: 'last'
 };
 
+exports.Prisma.CinemaBrandOrderByRelevanceFieldEnum = {
+  name: 'name',
+  slug: 'slug',
+  logo: 'logo'
+};
+
+exports.Prisma.ProvincesOrderByRelevanceFieldEnum = {
+  name: 'name',
+  slug: 'slug'
+};
+
+exports.Prisma.CinemaOrderByRelevanceFieldEnum = {
+  name: 'name',
+  slug: 'slug',
+  address: 'address',
+  map_link: 'map_link',
+  description: 'description'
+};
+
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
   username: 'username',
   email: 'email',
@@ -159,17 +207,24 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   refreshToken: 'refreshToken',
   codeId: 'codeId'
 };
-exports.Role = exports.$Enums.Role = {
-  USER: 'USER',
-  ADMIN: 'ADMIN'
-};
-
 exports.Status = exports.$Enums.Status = {
   ACTIVE: 'ACTIVE',
   INACTIVE: 'INACTIVE'
 };
 
+exports.Role = exports.$Enums.Role = {
+  SUPER_ADMIN: 'SUPER_ADMIN',
+  BRAND_MANAGER: 'BRAND_MANAGER',
+  CINEMA_MANAGER: 'CINEMA_MANAGER',
+  COUNTER_STAFF: 'COUNTER_STAFF',
+  USER: 'USER',
+  REVIEWER: 'REVIEWER'
+};
+
 exports.Prisma.ModelName = {
+  CinemaBrand: 'CinemaBrand',
+  Provinces: 'Provinces',
+  Cinema: 'Cinema',
   User: 'User'
 };
 
