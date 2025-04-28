@@ -117,18 +117,21 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
 
+exports.Prisma.ProvincesScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.CinemaBrandScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
   logo: 'logo',
-  createdAt: 'createdAt'
-};
-
-exports.Prisma.ProvincesScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  slug: 'slug'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.CinemaScalarFieldEnum = {
@@ -137,11 +140,19 @@ exports.Prisma.CinemaScalarFieldEnum = {
   slug: 'slug',
   address: 'address',
   status: 'status',
-  map_link: 'map_link',
+  mapLink: 'mapLink',
   brandId: 'brandId',
   provinceId: 'provinceId',
   description: 'description',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CounterScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  cinemaId: 'cinemaId'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
@@ -163,6 +174,7 @@ exports.Prisma.UserScalarFieldEnum = {
   status: 'status',
   brandId: 'brandId',
   cinemaId: 'cinemaId',
+  counterId: 'counterId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -170,6 +182,11 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.ProvincesOrderByRelevanceFieldEnum = {
+  name: 'name',
+  slug: 'slug'
 };
 
 exports.Prisma.NullsOrder = {
@@ -183,17 +200,17 @@ exports.Prisma.CinemaBrandOrderByRelevanceFieldEnum = {
   logo: 'logo'
 };
 
-exports.Prisma.ProvincesOrderByRelevanceFieldEnum = {
-  name: 'name',
-  slug: 'slug'
-};
-
 exports.Prisma.CinemaOrderByRelevanceFieldEnum = {
   name: 'name',
   slug: 'slug',
   address: 'address',
-  map_link: 'map_link',
+  mapLink: 'mapLink',
   description: 'description'
+};
+
+exports.Prisma.CounterOrderByRelevanceFieldEnum = {
+  name: 'name',
+  slug: 'slug'
 };
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
@@ -222,9 +239,10 @@ exports.Role = exports.$Enums.Role = {
 };
 
 exports.Prisma.ModelName = {
-  CinemaBrand: 'CinemaBrand',
   Provinces: 'Provinces',
+  CinemaBrand: 'CinemaBrand',
   Cinema: 'Cinema',
+  Counter: 'Counter',
   User: 'User'
 };
 

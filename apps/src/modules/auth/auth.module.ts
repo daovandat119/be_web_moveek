@@ -8,6 +8,7 @@ import { UserService } from '@/modules/user/user.service';
 import { MailerModule } from '@/modules/mailer/mailer.module';
 import { MailerService } from '@/modules/mailer/mailer.service';
 import { PrismaMysqlModule } from '@/prisma-mysql/prisma.module';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
@@ -24,6 +25,6 @@ import { PrismaMysqlModule } from '@/prisma-mysql/prisma.module';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, UserService, MailerService],
+  providers: [AuthService, UserService, MailerService, JwtStrategy],
 })
 export class AuthModule {}

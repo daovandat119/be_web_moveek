@@ -23,16 +23,15 @@ async function main() {
     ),
   );
 
-  
   const users = await prisma.user.createMany({
     data: [
       {
         username: 'superadmin',
+        slug: 'superadmin',
         email: 'superadmin@example.com',
         fullName: 'Super Admin',
         phone: '0900000001',
         phoneVerified: true,
-        region: 'VN',
         avatar: '',
         balance: 100000,
         password: passwordHash,

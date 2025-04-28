@@ -77,7 +77,10 @@ export class AuthService {
       payload,
     );
 
-    await this.userService.updateRefreshToken(payload.id, refreshToken);
+    await this.prismaMysql.user.update({
+      where: { id: payload.id },
+      data: { refreshToken: refreshToken },
+    });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
@@ -103,7 +106,7 @@ export class AuthService {
         refreshToken,
       );
 
-      const user = await this.userService.findById(payload.sub);
+      const user = await this.userService.checkUserExist(payload.sub);
 
       if (!user || user.refreshToken !== refreshToken)
         throw new UnauthorizedException('Invalid refresh token');
@@ -134,7 +137,11 @@ export class AuthService {
           this.configService,
           refreshToken,
         );
-        await this.userService.clearRefreshToken(payload.sub);
+        
+        await this.prismaMysql.user.update({
+          where: { id: payload.id },
+          data: { refreshToken: null },
+        });
       } catch (err) {
         console.log(err);
       }
@@ -169,19 +176,21 @@ export class AuthService {
 
     const { codeId, codeExpired } = generateVerificationCode(5);
 
-    const user = await this.userService.createUser({
-      username,
-      email,
-      password: passwordHash,
-      fullName: null,
-      phone: null,
-      region: null,
-      avatar: null,
-      balance: 0,
-      role: Role.USER,
-      codeId: codeId,
-      codeExpired: codeExpired,
-      status: Status.ACTIVE,
+    const user = await this.prismaMysql.user.create({
+      data: {
+        username,
+        email,
+        password: passwordHash,
+        fullName: null,
+        phone: null,
+        region: null,
+        avatar: null,
+        balance: 0,
+        role: Role.USER,
+        codeId: codeId,
+        codeExpired: codeExpired,
+        status: Status.ACTIVE,
+      },
     });
 
     const template = 'register';
@@ -249,7 +258,7 @@ export class AuthService {
       },
     });
 
-    return user; 
+    return user;
   }
 
   async forgotPassword(resendCodeDto: ResendCodeDto): Promise<User> {

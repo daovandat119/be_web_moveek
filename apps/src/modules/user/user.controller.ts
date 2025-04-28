@@ -5,6 +5,8 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Param,
+  Patch,
   Post,
   UseGuards,
 } from '@nestjs/common';
@@ -14,9 +16,12 @@ import { RolesGuard } from 'libs/common/guards/roles.guard';
 import { Roles } from '@libs/common/decorators/roles.decorator';
 import { UserService } from '@/modules/user/user.service';
 import {
-  CreateByBrandManagerDto,
-  CreateCinemaManagerUser,
+  CreateBrandManagerDto,
+  CreateCinemaManagerDto,
   CreateCounterStaffDto,
+  UpdatePasswordDto,
+  UpdateStatusdDto,
+  UpdateUserDto,
 } from '@/modules/user/dto/index';
 
 @Controller('user')
@@ -29,15 +34,14 @@ export class UserController {
     return currentUser;
   }
 
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('create-brand-manager')
   @Roles(Role.SUPER_ADMIN)
   @HttpCode(HttpStatus.CREATED)
   async createBrandManager(
-    @Body() createByBrandManagerDto: CreateByBrandManagerDto,
+    @Body() createBrandManagerDto: CreateBrandManagerDto,
   ) {
-    return this.userService.createBrandManagerUser(
-      createByBrandManagerDto
-    );
+    return await this.userService.createBrandManagerUser(createBrandManagerDto);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -45,11 +49,11 @@ export class UserController {
   @Roles(Role.BRAND_MANAGER)
   @HttpCode(HttpStatus.CREATED)
   async createCinemaManager(
-    @Body() createCinemaManagerUser: CreateCinemaManagerUser,
+    @Body() createCinemaManagerDto: CreateCinemaManagerDto,
     @CurrentUser() currentUser: User,
   ) {
-    return this.userService.createCinemaManagerUser(
-      createCinemaManagerUser,
+    return await this.userService.createCinemaManagerUser(
+      createCinemaManagerDto,
       currentUser,
     );
   }
@@ -62,11 +66,100 @@ export class UserController {
     @Body() createCounterStaffDto: CreateCounterStaffDto,
     @CurrentUser() currentUser: User,
   ) {
-    return this.userService.createCounterStaffUser(
+    return await this.userService.createCounterStaffUser(
       createCounterStaffDto,
       currentUser,
     );
   }
 
-  
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('find-super-admin')
+  @Roles(Role.SUPER_ADMIN)
+  @HttpCode(HttpStatus.CREATED)
+  async findSuperAdmin() {
+    return await this.userService.findSuperAdminUser();
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('find-brand-manager')
+  @Roles(Role.BRAND_MANAGER)
+  @HttpCode(HttpStatus.CREATED)
+  async findBrandManager(@CurrentUser() currentUser: User) {
+    return await this.userService.findBrandManagerUser(currentUser);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('find-cinema-manager')
+  @Roles(Role.CINEMA_MANAGER)
+  @HttpCode(HttpStatus.CREATED)
+  async findCinemaManager(@CurrentUser() currentUser: User) {
+    return await this.userService.findCinemaManagerUser(currentUser);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Patch('update-password')
+  @Roles(
+    Role.SUPER_ADMIN,
+    Role.BRAND_MANAGER,
+    Role.CINEMA_MANAGER,
+    Role.COUNTER_STAFF,
+  )
+  @HttpCode(HttpStatus.CREATED)
+  async updateUserPassword(
+    @Body() updatePasswordDto: UpdatePasswordDto,
+    @CurrentUser() currentUser: User,
+  ) {
+    return await this.userService.updateUserPassword(
+      updatePasswordDto,
+      currentUser,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Patch('update-status')
+  @Roles(Role.SUPER_ADMIN, Role.BRAND_MANAGER, Role.CINEMA_MANAGER)
+  @HttpCode(HttpStatus.CREATED)
+  async updateUserStatus(
+    @Body() updateStatusdDto: UpdateStatusdDto,
+    @CurrentUser() currentUser: User,
+  ) {
+    return await this.userService.updateUserStatus(
+      updateStatusdDto,
+      currentUser,
+    );
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('search-user/:slug')
+  @Roles(Role.SUPER_ADMIN, Role.BRAND_MANAGER, Role.CINEMA_MANAGER)
+  @HttpCode(HttpStatus.OK)
+  async searchUser(
+    @Param('slug') slug: string,
+    @CurrentUser() currentUser: User,
+  ) {
+    return await this.userService.searchUser(slug, currentUser);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Patch('update-user')
+  @Roles(Role.SUPER_ADMIN, Role.BRAND_MANAGER, Role.CINEMA_MANAGER)
+  @HttpCode(HttpStatus.CREATED)
+  async updateUser(
+    @Body() updateUserDto: UpdateUserDto,
+    @CurrentUser() currentUser: User,
+  ) {
+    return await this.userService.updateUser(updateUserDto, currentUser);
+  }
+
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Get('find-user-by-username/:slug')
+  @Roles(Role.SUPER_ADMIN, Role.BRAND_MANAGER, Role.CINEMA_MANAGER)
+  @HttpCode(HttpStatus.OK)
+  async findUserByUsername(
+    @Param('slug') slug: string,
+    @CurrentUser() currentUser: User,
+  ) {
+    return await this.userService.findUserByUsername(slug, currentUser);
+  }
+
 }
