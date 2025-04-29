@@ -152,18 +152,20 @@ exports.Prisma.CounterScalarFieldEnum = {
   id: 'id',
   name: 'name',
   slug: 'slug',
-  cinemaId: 'cinemaId'
+  cinemaId: 'cinemaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
   username: 'username',
+  slug: 'slug',
   email: 'email',
   emailVerified: 'emailVerified',
   phone: 'phone',
   phoneVerified: 'phoneVerified',
   fullName: 'fullName',
-  region: 'region',
   avatar: 'avatar',
   balance: 'balance',
   password: 'password',
@@ -172,6 +174,7 @@ exports.Prisma.UserScalarFieldEnum = {
   codeExpired: 'codeExpired',
   role: 'role',
   status: 'status',
+  provinceId: 'provinceId',
   brandId: 'brandId',
   cinemaId: 'cinemaId',
   counterId: 'counterId',
@@ -215,10 +218,10 @@ exports.Prisma.CounterOrderByRelevanceFieldEnum = {
 
 exports.Prisma.UserOrderByRelevanceFieldEnum = {
   username: 'username',
+  slug: 'slug',
   email: 'email',
   phone: 'phone',
   fullName: 'fullName',
-  region: 'region',
   avatar: 'avatar',
   password: 'password',
   refreshToken: 'refreshToken',

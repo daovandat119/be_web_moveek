@@ -8,6 +8,7 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   UseGuards,
 } from '@nestjs/common';
 import { CurrentUser } from 'libs/common/decorators/current-user.decorator';
@@ -75,7 +76,7 @@ export class UserController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('find-super-admin')
   @Roles(Role.SUPER_ADMIN)
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   async findSuperAdmin() {
     return await this.userService.findSuperAdminUser();
   }
@@ -83,7 +84,7 @@ export class UserController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('find-brand-manager')
   @Roles(Role.BRAND_MANAGER)
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   async findBrandManager(@CurrentUser() currentUser: User) {
     return await this.userService.findBrandManagerUser(currentUser);
   }
@@ -91,7 +92,7 @@ export class UserController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Get('find-cinema-manager')
   @Roles(Role.CINEMA_MANAGER)
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   async findCinemaManager(@CurrentUser() currentUser: User) {
     return await this.userService.findCinemaManagerUser(currentUser);
   }
@@ -118,7 +119,7 @@ export class UserController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Patch('update-status')
   @Roles(Role.SUPER_ADMIN, Role.BRAND_MANAGER, Role.CINEMA_MANAGER)
-  @HttpCode(HttpStatus.CREATED)
+  @HttpCode(HttpStatus.OK)
   async updateUserStatus(
     @Body() updateStatusdDto: UpdateStatusdDto,
     @CurrentUser() currentUser: User,
@@ -130,20 +131,20 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Get('search-user/:slug')
+  @Get('search')
   @Roles(Role.SUPER_ADMIN, Role.BRAND_MANAGER, Role.CINEMA_MANAGER)
   @HttpCode(HttpStatus.OK)
   async searchUser(
-    @Param('slug') slug: string,
+    @Query('keyword') keyword: string,
     @CurrentUser() currentUser: User,
   ) {
-    return await this.userService.searchUser(slug, currentUser);
+    return await this.userService.searchUser(keyword, currentUser);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Patch('update-user')
-  @Roles(Role.SUPER_ADMIN, Role.BRAND_MANAGER, Role.CINEMA_MANAGER)
-  @HttpCode(HttpStatus.CREATED)
+  @Patch('/me')
+  @Roles(Role.USER, Role.REVIEWER)
+  @HttpCode(HttpStatus.OK)
   async updateUser(
     @Body() updateUserDto: UpdateUserDto,
     @CurrentUser() currentUser: User,
@@ -152,14 +153,13 @@ export class UserController {
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
-  @Get('find-user-by-username/:slug')
-  @Roles(Role.SUPER_ADMIN, Role.BRAND_MANAGER, Role.CINEMA_MANAGER)
+  @Get(':slug')
+  @Roles(Role.USER, Role.REVIEWER)
   @HttpCode(HttpStatus.OK)
   async findUserByUsername(
     @Param('slug') slug: string,
-    @CurrentUser() currentUser: User,
   ) {
-    return await this.userService.findUserByUsername(slug, currentUser);
+    return await this.userService.findUserByUsername(slug);
   }
 
 }

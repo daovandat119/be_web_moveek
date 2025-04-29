@@ -109,8 +109,7 @@ export class UserService {
 
     if (existCinema) throw new BadRequestException('Rạp đã tồn tại');
 
-    if (!brand?.brand)
-      throw new NotFoundException('CinemaBrand không tồn tại');
+    if (!brand?.brand) throw new NotFoundException('CinemaBrand không tồn tại');
 
     const createCinema = await this.prismaMysql.cinema.create({
       data: {
@@ -226,10 +225,7 @@ export class UserService {
     return counterOfCinema;
   }
 
-  private async checkPermissionToManageUser(
-    currentUser: User,
-    targetUserId: number,
-  ) {
+  private async checkPermissionToManageUser(currentUser: User) {
     if (currentUser.role === Role.SUPER_ADMIN) {
       return;
     }
@@ -239,7 +235,7 @@ export class UserService {
     if (currentUser.role === Role.BRAND_MANAGER) {
       const cinemas = await this.prismaMysql.cinema.findMany({
         where: { brandId: currentUser.id },
-        include: { users: true },
+        include: { users: { select: { id: true } } },
       });
       allUserIds = cinemas.flatMap((cinema) =>
         cinema.users.map((user) => user.id),
@@ -247,7 +243,7 @@ export class UserService {
     } else if (currentUser.role === Role.CINEMA_MANAGER) {
       const counters = await this.prismaMysql.counter.findMany({
         where: { cinemaId: currentUser.id },
-        include: { users: true },
+        include: { users: { select: { id: true } } },
       });
       allUserIds = counters.flatMap((counter) =>
         counter.users.map((user) => user.id),
@@ -256,9 +252,7 @@ export class UserService {
       throw new ForbiddenException('Bạn không có quyền thực hiện thao tác này');
     }
 
-    if (!allUserIds.includes(targetUserId)) {
-      throw new ForbiddenException('Bạn không có quyền thao tác với user này');
-    }
+    return allUserIds;
   }
 
   async updateUserPassword(
@@ -268,16 +262,14 @@ export class UserService {
     const { userId, oldPassword, password, confirmPassword } =
       updatePasswordDto;
 
-    if (password !== confirmPassword) {
+    if (password !== confirmPassword)
       throw new BadRequestException('Mật khẩu xác nhận không khớp');
-    }
 
     if (currentUser.role === Role.SUPER_ADMIN) {
-      if (userId === currentUser.id) {
+      if (userId === currentUser.id)
         throw new BadRequestException(
           'Super Admin không thể tự đổi mật khẩu ở đây',
         );
-      }
 
       await this.checkUserExist(userId);
 
@@ -302,7 +294,13 @@ export class UserService {
           data: { password: await hashPassword(password) },
         });
       } else {
-        await this.checkPermissionToManageUser(currentUser, userId);
+        const allUserIds = await this.checkPermissionToManageUser(currentUser);
+
+        if (!allUserIds?.includes(userId)) {
+          throw new ForbiddenException(
+            'Bạn không có quyền thao tác với user này',
+          );
+        }
 
         await this.prismaMysql.user.update({
           where: { id: userId },
@@ -310,6 +308,8 @@ export class UserService {
         });
       }
     }
+
+    return { message: 'Cập nhật password thành công' };
   }
 
   async updateUserStatus(updateStatusDto: UpdateStatusdDto, currentUser: User) {
@@ -326,25 +326,58 @@ export class UserService {
         throw new NotFoundException(`UserId ${id} không tồn tại`);
       }
 
-      await this.checkPermissionToManageUser(currentUser, id);
+      const allUserIds = await this.checkPermissionToManageUser(currentUser);
+
+      if (!allUserIds?.includes(id)) {
+        throw new ForbiddenException(
+          'Bạn không có quyền thao tác với user này',
+        );
+      }
 
       await this.prismaMysql.user.update({
         where: { id },
         data: { status: user.status },
       });
     }
+
+    return { message: 'Cập nhật trạng thái thành công' };
   }
 
-  async searchUser(slug: string, currentUser: User){
+  async searchUser(keyword: string, currentUser: User) {
+    const allUserIds = await this.checkPermissionToManageUser(currentUser);
 
+    const users = await this.prismaMysql.user.findMany({
+      where: {
+        ...(allUserIds!.length > 0 && { id: { in: allUserIds } }),
+        fullName: {
+          contains: keyword,
+        },
+      },
+    });
+
+    return users;
   }
 
-  async updateUser(updateUserDto: UpdateUserDto, currentUser: User){
+  async updateUser(updateUserDto: UpdateUserDto, currentUser: User) {
+    const { fullName, avatar, phone, provinceId } = updateUserDto;
+    await this.prismaMysql.user.update({
+      where: { id: currentUser.id },
+      data: {
+        fullName,
+        avatar,
+        phone,
+        provinceId,
+      },
+    });
 
+    return { message: 'Cập nhật thông tin thành công' };
   }
 
-  async findUserByUsername(slug: string, currentUser: User){
+  async findUserByUsername(slug: string) {
+    const user = await this.prismaMysql.user.findUnique({
+      where: { slug: slug },
+    });
 
+    return user;
   }
-
 }

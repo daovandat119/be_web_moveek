@@ -31,6 +31,7 @@ import {
 import { User } from '@libs/generated/prisma-mysql';
 import { Status, Role } from '@libs/common/constants/index';
 import { MailerService } from '@/modules/mailer/mailer.service';
+import { slugify } from '@libs/utils/slugify';
 
 @Injectable()
 export class AuthService {
@@ -152,8 +153,8 @@ export class AuthService {
       secure: this.configService.get<string>('NODE_ENV') === 'production',
       sameSite: 'strict',
     });
-
-    return res.status(200).json(successResponse('Logout successful'));
+    
+    return { message: 'Logout successful' };
   }
 
   async register(registerDto: RegisterDto): Promise<User> {
@@ -178,12 +179,12 @@ export class AuthService {
 
     const user = await this.prismaMysql.user.create({
       data: {
-        username,
-        email,
+        username: username,
+        slug: slugify(username),
+        email: email,
         password: passwordHash,
         fullName: null,
         phone: null,
-        region: null,
         avatar: null,
         balance: 0,
         role: Role.USER,

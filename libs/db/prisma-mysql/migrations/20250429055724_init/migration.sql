@@ -54,9 +54,12 @@ CREATE TABLE `Counter` (
     `name` VARCHAR(191) NOT NULL,
     `slug` VARCHAR(191) NOT NULL,
     `cinema_id` INTEGER NOT NULL,
+    `created_at` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updated_at` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `Counter_name_key`(`name`),
     UNIQUE INDEX `Counter_slug_key`(`slug`),
+    INDEX `Counter_cinema_id_idx`(`cinema_id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -64,12 +67,12 @@ CREATE TABLE `Counter` (
 CREATE TABLE `User` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(191) NOT NULL,
+    `slug` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
     `email_verified` BOOLEAN NOT NULL DEFAULT false,
     `phone` VARCHAR(191) NULL,
     `phone_verified` BOOLEAN NOT NULL DEFAULT false,
     `full_name` VARCHAR(191) NULL,
-    `region` VARCHAR(191) NULL,
     `avatar` VARCHAR(191) NULL,
     `balance` INTEGER NOT NULL DEFAULT 0,
     `password` VARCHAR(191) NOT NULL,
@@ -78,6 +81,7 @@ CREATE TABLE `User` (
     `code_expired` DATETIME(3) NULL,
     `role` ENUM('SUPER_ADMIN', 'BRAND_MANAGER', 'CINEMA_MANAGER', 'COUNTER_STAFF', 'USER', 'REVIEWER') NOT NULL DEFAULT 'USER',
     `status` ENUM('ACTIVE', 'INACTIVE') NOT NULL DEFAULT 'INACTIVE',
+    `province_id` INTEGER NULL,
     `brand_id` INTEGER NULL,
     `cinema_id` INTEGER NULL,
     `counter_id` INTEGER NULL,
@@ -85,9 +89,11 @@ CREATE TABLE `User` (
     `updated_at` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `User_username_key`(`username`),
+    UNIQUE INDEX `User_slug_key`(`slug`),
     UNIQUE INDEX `User_email_key`(`email`),
     UNIQUE INDEX `User_phone_key`(`phone`),
     INDEX `User_brand_id_cinema_id_idx`(`brand_id`, `cinema_id`),
+    INDEX `User_slug_idx`(`slug`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -99,6 +105,9 @@ ALTER TABLE `Cinema` ADD CONSTRAINT `Cinema_province_id_fkey` FOREIGN KEY (`prov
 
 -- AddForeignKey
 ALTER TABLE `Counter` ADD CONSTRAINT `Counter_cinema_id_fkey` FOREIGN KEY (`cinema_id`) REFERENCES `Cinema`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `User` ADD CONSTRAINT `User_province_id_fkey` FOREIGN KEY (`province_id`) REFERENCES `Provinces`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE `User` ADD CONSTRAINT `User_brand_id_fkey` FOREIGN KEY (`brand_id`) REFERENCES `CinemaBrand`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

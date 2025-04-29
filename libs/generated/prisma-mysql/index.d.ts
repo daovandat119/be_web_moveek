@@ -1227,10 +1227,12 @@ export namespace Prisma {
 
   export type ProvincesCountOutputType = {
     cinemas: number
+    users: number
   }
 
   export type ProvincesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     cinemas?: boolean | ProvincesCountOutputTypeCountCinemasArgs
+    users?: boolean | ProvincesCountOutputTypeCountUsersArgs
   }
 
   // Custom InputTypes
@@ -1249,6 +1251,13 @@ export namespace Prisma {
    */
   export type ProvincesCountOutputTypeCountCinemasArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CinemaWhereInput
+  }
+
+  /**
+   * ProvincesCountOutputType without action
+   */
+  export type ProvincesCountOutputTypeCountUsersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
   }
 
 
@@ -1566,6 +1575,7 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     cinemas?: boolean | Provinces$cinemasArgs<ExtArgs>
+    users?: boolean | Provinces$usersArgs<ExtArgs>
     _count?: boolean | ProvincesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["provinces"]>
 
@@ -1582,6 +1592,7 @@ export namespace Prisma {
   export type ProvincesOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "createdAt" | "updatedAt", ExtArgs["result"]["provinces"]>
   export type ProvincesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     cinemas?: boolean | Provinces$cinemasArgs<ExtArgs>
+    users?: boolean | Provinces$usersArgs<ExtArgs>
     _count?: boolean | ProvincesCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -1589,6 +1600,7 @@ export namespace Prisma {
     name: "Provinces"
     objects: {
       cinemas: Prisma.$CinemaPayload<ExtArgs>[]
+      users: Prisma.$UserPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -1937,6 +1949,7 @@ export namespace Prisma {
   export interface Prisma__ProvincesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     cinemas<T extends Provinces$cinemasArgs<ExtArgs> = {}>(args?: Subset<T, Provinces$cinemasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    users<T extends Provinces$usersArgs<ExtArgs> = {}>(args?: Subset<T, Provinces$usersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2335,6 +2348,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CinemaScalarFieldEnum | CinemaScalarFieldEnum[]
+  }
+
+  /**
+   * Provinces.users
+   */
+  export type Provinces$usersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    cursor?: UserWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
   /**
@@ -4510,6 +4547,8 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     cinemaId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type CounterMaxAggregateOutputType = {
@@ -4517,6 +4556,8 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     cinemaId: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
   }
 
   export type CounterCountAggregateOutputType = {
@@ -4524,6 +4565,8 @@ export namespace Prisma {
     name: number
     slug: number
     cinemaId: number
+    createdAt: number
+    updatedAt: number
     _all: number
   }
 
@@ -4543,6 +4586,8 @@ export namespace Prisma {
     name?: true
     slug?: true
     cinemaId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type CounterMaxAggregateInputType = {
@@ -4550,6 +4595,8 @@ export namespace Prisma {
     name?: true
     slug?: true
     cinemaId?: true
+    createdAt?: true
+    updatedAt?: true
   }
 
   export type CounterCountAggregateInputType = {
@@ -4557,6 +4604,8 @@ export namespace Prisma {
     name?: true
     slug?: true
     cinemaId?: true
+    createdAt?: true
+    updatedAt?: true
     _all?: true
   }
 
@@ -4651,6 +4700,8 @@ export namespace Prisma {
     name: string
     slug: string
     cinemaId: number
+    createdAt: Date
+    updatedAt: Date
     _count: CounterCountAggregateOutputType | null
     _avg: CounterAvgAggregateOutputType | null
     _sum: CounterSumAggregateOutputType | null
@@ -4677,6 +4728,8 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     cinemaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
     cinema?: boolean | CinemaDefaultArgs<ExtArgs>
     users?: boolean | Counter$usersArgs<ExtArgs>
     _count?: boolean | CounterCountOutputTypeDefaultArgs<ExtArgs>
@@ -4689,9 +4742,11 @@ export namespace Prisma {
     name?: boolean
     slug?: boolean
     cinemaId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
   }
 
-  export type CounterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "cinemaId", ExtArgs["result"]["counter"]>
+  export type CounterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "cinemaId" | "createdAt" | "updatedAt", ExtArgs["result"]["counter"]>
   export type CounterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     cinema?: boolean | CinemaDefaultArgs<ExtArgs>
     users?: boolean | Counter$usersArgs<ExtArgs>
@@ -4709,6 +4764,8 @@ export namespace Prisma {
       name: string
       slug: string
       cinemaId: number
+      createdAt: Date
+      updatedAt: Date
     }, ExtArgs["result"]["counter"]>
     composites: {}
   }
@@ -5084,6 +5141,8 @@ export namespace Prisma {
     readonly name: FieldRef<"Counter", 'String'>
     readonly slug: FieldRef<"Counter", 'String'>
     readonly cinemaId: FieldRef<"Counter", 'Int'>
+    readonly createdAt: FieldRef<"Counter", 'DateTime'>
+    readonly updatedAt: FieldRef<"Counter", 'DateTime'>
   }
     
 
@@ -5484,6 +5543,7 @@ export namespace Prisma {
   export type UserAvgAggregateOutputType = {
     id: number | null
     balance: number | null
+    provinceId: number | null
     brandId: number | null
     cinemaId: number | null
     counterId: number | null
@@ -5492,6 +5552,7 @@ export namespace Prisma {
   export type UserSumAggregateOutputType = {
     id: number | null
     balance: number | null
+    provinceId: number | null
     brandId: number | null
     cinemaId: number | null
     counterId: number | null
@@ -5500,12 +5561,12 @@ export namespace Prisma {
   export type UserMinAggregateOutputType = {
     id: number | null
     username: string | null
+    slug: string | null
     email: string | null
     emailVerified: boolean | null
     phone: string | null
     phoneVerified: boolean | null
     fullName: string | null
-    region: string | null
     avatar: string | null
     balance: number | null
     password: string | null
@@ -5514,6 +5575,7 @@ export namespace Prisma {
     codeExpired: Date | null
     role: $Enums.Role | null
     status: $Enums.Status | null
+    provinceId: number | null
     brandId: number | null
     cinemaId: number | null
     counterId: number | null
@@ -5524,12 +5586,12 @@ export namespace Prisma {
   export type UserMaxAggregateOutputType = {
     id: number | null
     username: string | null
+    slug: string | null
     email: string | null
     emailVerified: boolean | null
     phone: string | null
     phoneVerified: boolean | null
     fullName: string | null
-    region: string | null
     avatar: string | null
     balance: number | null
     password: string | null
@@ -5538,6 +5600,7 @@ export namespace Prisma {
     codeExpired: Date | null
     role: $Enums.Role | null
     status: $Enums.Status | null
+    provinceId: number | null
     brandId: number | null
     cinemaId: number | null
     counterId: number | null
@@ -5548,12 +5611,12 @@ export namespace Prisma {
   export type UserCountAggregateOutputType = {
     id: number
     username: number
+    slug: number
     email: number
     emailVerified: number
     phone: number
     phoneVerified: number
     fullName: number
-    region: number
     avatar: number
     balance: number
     password: number
@@ -5562,6 +5625,7 @@ export namespace Prisma {
     codeExpired: number
     role: number
     status: number
+    provinceId: number
     brandId: number
     cinemaId: number
     counterId: number
@@ -5574,6 +5638,7 @@ export namespace Prisma {
   export type UserAvgAggregateInputType = {
     id?: true
     balance?: true
+    provinceId?: true
     brandId?: true
     cinemaId?: true
     counterId?: true
@@ -5582,6 +5647,7 @@ export namespace Prisma {
   export type UserSumAggregateInputType = {
     id?: true
     balance?: true
+    provinceId?: true
     brandId?: true
     cinemaId?: true
     counterId?: true
@@ -5590,12 +5656,12 @@ export namespace Prisma {
   export type UserMinAggregateInputType = {
     id?: true
     username?: true
+    slug?: true
     email?: true
     emailVerified?: true
     phone?: true
     phoneVerified?: true
     fullName?: true
-    region?: true
     avatar?: true
     balance?: true
     password?: true
@@ -5604,6 +5670,7 @@ export namespace Prisma {
     codeExpired?: true
     role?: true
     status?: true
+    provinceId?: true
     brandId?: true
     cinemaId?: true
     counterId?: true
@@ -5614,12 +5681,12 @@ export namespace Prisma {
   export type UserMaxAggregateInputType = {
     id?: true
     username?: true
+    slug?: true
     email?: true
     emailVerified?: true
     phone?: true
     phoneVerified?: true
     fullName?: true
-    region?: true
     avatar?: true
     balance?: true
     password?: true
@@ -5628,6 +5695,7 @@ export namespace Prisma {
     codeExpired?: true
     role?: true
     status?: true
+    provinceId?: true
     brandId?: true
     cinemaId?: true
     counterId?: true
@@ -5638,12 +5706,12 @@ export namespace Prisma {
   export type UserCountAggregateInputType = {
     id?: true
     username?: true
+    slug?: true
     email?: true
     emailVerified?: true
     phone?: true
     phoneVerified?: true
     fullName?: true
-    region?: true
     avatar?: true
     balance?: true
     password?: true
@@ -5652,6 +5720,7 @@ export namespace Prisma {
     codeExpired?: true
     role?: true
     status?: true
+    provinceId?: true
     brandId?: true
     cinemaId?: true
     counterId?: true
@@ -5749,12 +5818,12 @@ export namespace Prisma {
   export type UserGroupByOutputType = {
     id: number
     username: string
+    slug: string
     email: string
     emailVerified: boolean
     phone: string | null
     phoneVerified: boolean
     fullName: string | null
-    region: string | null
     avatar: string | null
     balance: number
     password: string
@@ -5763,6 +5832,7 @@ export namespace Prisma {
     codeExpired: Date | null
     role: $Enums.Role
     status: $Enums.Status
+    provinceId: number | null
     brandId: number | null
     cinemaId: number | null
     counterId: number | null
@@ -5792,12 +5862,12 @@ export namespace Prisma {
   export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     username?: boolean
+    slug?: boolean
     email?: boolean
     emailVerified?: boolean
     phone?: boolean
     phoneVerified?: boolean
     fullName?: boolean
-    region?: boolean
     avatar?: boolean
     balance?: boolean
     password?: boolean
@@ -5806,11 +5876,13 @@ export namespace Prisma {
     codeExpired?: boolean
     role?: boolean
     status?: boolean
+    provinceId?: boolean
     brandId?: boolean
     cinemaId?: boolean
     counterId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    province?: boolean | User$provinceArgs<ExtArgs>
     brand?: boolean | User$brandArgs<ExtArgs>
     cinema?: boolean | User$cinemaArgs<ExtArgs>
     counter?: boolean | User$counterArgs<ExtArgs>
@@ -5821,12 +5893,12 @@ export namespace Prisma {
   export type UserSelectScalar = {
     id?: boolean
     username?: boolean
+    slug?: boolean
     email?: boolean
     emailVerified?: boolean
     phone?: boolean
     phoneVerified?: boolean
     fullName?: boolean
-    region?: boolean
     avatar?: boolean
     balance?: boolean
     password?: boolean
@@ -5835,6 +5907,7 @@ export namespace Prisma {
     codeExpired?: boolean
     role?: boolean
     status?: boolean
+    provinceId?: boolean
     brandId?: boolean
     cinemaId?: boolean
     counterId?: boolean
@@ -5842,8 +5915,9 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "emailVerified" | "phone" | "phoneVerified" | "fullName" | "region" | "avatar" | "balance" | "password" | "refreshToken" | "codeId" | "codeExpired" | "role" | "status" | "brandId" | "cinemaId" | "counterId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "slug" | "email" | "emailVerified" | "phone" | "phoneVerified" | "fullName" | "avatar" | "balance" | "password" | "refreshToken" | "codeId" | "codeExpired" | "role" | "status" | "provinceId" | "brandId" | "cinemaId" | "counterId" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    province?: boolean | User$provinceArgs<ExtArgs>
     brand?: boolean | User$brandArgs<ExtArgs>
     cinema?: boolean | User$cinemaArgs<ExtArgs>
     counter?: boolean | User$counterArgs<ExtArgs>
@@ -5852,6 +5926,7 @@ export namespace Prisma {
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
     objects: {
+      province: Prisma.$ProvincesPayload<ExtArgs> | null
       brand: Prisma.$CinemaBrandPayload<ExtArgs> | null
       cinema: Prisma.$CinemaPayload<ExtArgs> | null
       counter: Prisma.$CounterPayload<ExtArgs> | null
@@ -5859,12 +5934,12 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: number
       username: string
+      slug: string
       email: string
       emailVerified: boolean
       phone: string | null
       phoneVerified: boolean
       fullName: string | null
-      region: string | null
       avatar: string | null
       balance: number
       password: string
@@ -5873,6 +5948,7 @@ export namespace Prisma {
       codeExpired: Date | null
       role: $Enums.Role
       status: $Enums.Status
+      provinceId: number | null
       brandId: number | null
       cinemaId: number | null
       counterId: number | null
@@ -6218,6 +6294,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    province<T extends User$provinceArgs<ExtArgs> = {}>(args?: Subset<T, User$provinceArgs<ExtArgs>>): Prisma__ProvincesClient<$Result.GetResult<Prisma.$ProvincesPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     brand<T extends User$brandArgs<ExtArgs> = {}>(args?: Subset<T, User$brandArgs<ExtArgs>>): Prisma__CinemaBrandClient<$Result.GetResult<Prisma.$CinemaBrandPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     cinema<T extends User$cinemaArgs<ExtArgs> = {}>(args?: Subset<T, User$cinemaArgs<ExtArgs>>): Prisma__CinemaClient<$Result.GetResult<Prisma.$CinemaPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     counter<T extends User$counterArgs<ExtArgs> = {}>(args?: Subset<T, User$counterArgs<ExtArgs>>): Prisma__CounterClient<$Result.GetResult<Prisma.$CounterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
@@ -6252,12 +6329,12 @@ export namespace Prisma {
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'Int'>
     readonly username: FieldRef<"User", 'String'>
+    readonly slug: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
     readonly emailVerified: FieldRef<"User", 'Boolean'>
     readonly phone: FieldRef<"User", 'String'>
     readonly phoneVerified: FieldRef<"User", 'Boolean'>
     readonly fullName: FieldRef<"User", 'String'>
-    readonly region: FieldRef<"User", 'String'>
     readonly avatar: FieldRef<"User", 'String'>
     readonly balance: FieldRef<"User", 'Int'>
     readonly password: FieldRef<"User", 'String'>
@@ -6266,6 +6343,7 @@ export namespace Prisma {
     readonly codeExpired: FieldRef<"User", 'DateTime'>
     readonly role: FieldRef<"User", 'Role'>
     readonly status: FieldRef<"User", 'Status'>
+    readonly provinceId: FieldRef<"User", 'Int'>
     readonly brandId: FieldRef<"User", 'Int'>
     readonly cinemaId: FieldRef<"User", 'Int'>
     readonly counterId: FieldRef<"User", 'Int'>
@@ -6614,6 +6692,25 @@ export namespace Prisma {
   }
 
   /**
+   * User.province
+   */
+  export type User$provinceArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Provinces
+     */
+    select?: ProvincesSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Provinces
+     */
+    omit?: ProvincesOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProvincesInclude<ExtArgs> | null
+    where?: ProvincesWhereInput
+  }
+
+  /**
    * User.brand
    */
   export type User$brandArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6747,7 +6844,9 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     slug: 'slug',
-    cinemaId: 'cinemaId'
+    cinemaId: 'cinemaId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
   };
 
   export type CounterScalarFieldEnum = (typeof CounterScalarFieldEnum)[keyof typeof CounterScalarFieldEnum]
@@ -6756,12 +6855,12 @@ export namespace Prisma {
   export const UserScalarFieldEnum: {
     id: 'id',
     username: 'username',
+    slug: 'slug',
     email: 'email',
     emailVerified: 'emailVerified',
     phone: 'phone',
     phoneVerified: 'phoneVerified',
     fullName: 'fullName',
-    region: 'region',
     avatar: 'avatar',
     balance: 'balance',
     password: 'password',
@@ -6770,6 +6869,7 @@ export namespace Prisma {
     codeExpired: 'codeExpired',
     role: 'role',
     status: 'status',
+    provinceId: 'provinceId',
     brandId: 'brandId',
     cinemaId: 'cinemaId',
     counterId: 'counterId',
@@ -6834,10 +6934,10 @@ export namespace Prisma {
 
   export const UserOrderByRelevanceFieldEnum: {
     username: 'username',
+    slug: 'slug',
     email: 'email',
     phone: 'phone',
     fullName: 'fullName',
-    region: 'region',
     avatar: 'avatar',
     password: 'password',
     refreshToken: 'refreshToken',
@@ -6914,6 +7014,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Provinces"> | Date | string
     updatedAt?: DateTimeFilter<"Provinces"> | Date | string
     cinemas?: CinemaListRelationFilter
+    users?: UserListRelationFilter
   }
 
   export type ProvincesOrderByWithRelationInput = {
@@ -6923,6 +7024,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     cinemas?: CinemaOrderByRelationAggregateInput
+    users?: UserOrderByRelationAggregateInput
     _relevance?: ProvincesOrderByRelevanceInput
   }
 
@@ -6936,6 +7038,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Provinces"> | Date | string
     updatedAt?: DateTimeFilter<"Provinces"> | Date | string
     cinemas?: CinemaListRelationFilter
+    users?: UserListRelationFilter
   }, "id" | "name" | "slug">
 
   export type ProvincesOrderByWithAggregationInput = {
@@ -7133,6 +7236,8 @@ export namespace Prisma {
     name?: StringFilter<"Counter"> | string
     slug?: StringFilter<"Counter"> | string
     cinemaId?: IntFilter<"Counter"> | number
+    createdAt?: DateTimeFilter<"Counter"> | Date | string
+    updatedAt?: DateTimeFilter<"Counter"> | Date | string
     cinema?: XOR<CinemaScalarRelationFilter, CinemaWhereInput>
     users?: UserListRelationFilter
   }
@@ -7142,6 +7247,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     cinemaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     cinema?: CinemaOrderByWithRelationInput
     users?: UserOrderByRelationAggregateInput
     _relevance?: CounterOrderByRelevanceInput
@@ -7155,6 +7262,8 @@ export namespace Prisma {
     OR?: CounterWhereInput[]
     NOT?: CounterWhereInput | CounterWhereInput[]
     cinemaId?: IntFilter<"Counter"> | number
+    createdAt?: DateTimeFilter<"Counter"> | Date | string
+    updatedAt?: DateTimeFilter<"Counter"> | Date | string
     cinema?: XOR<CinemaScalarRelationFilter, CinemaWhereInput>
     users?: UserListRelationFilter
   }, "id" | "name" | "slug">
@@ -7164,6 +7273,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     cinemaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
     _count?: CounterCountOrderByAggregateInput
     _avg?: CounterAvgOrderByAggregateInput
     _max?: CounterMaxOrderByAggregateInput
@@ -7179,6 +7290,8 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Counter"> | string
     slug?: StringWithAggregatesFilter<"Counter"> | string
     cinemaId?: IntWithAggregatesFilter<"Counter"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"Counter"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Counter"> | Date | string
   }
 
   export type UserWhereInput = {
@@ -7187,12 +7300,12 @@ export namespace Prisma {
     NOT?: UserWhereInput | UserWhereInput[]
     id?: IntFilter<"User"> | number
     username?: StringFilter<"User"> | string
+    slug?: StringFilter<"User"> | string
     email?: StringFilter<"User"> | string
     emailVerified?: BoolFilter<"User"> | boolean
     phone?: StringNullableFilter<"User"> | string | null
     phoneVerified?: BoolFilter<"User"> | boolean
     fullName?: StringNullableFilter<"User"> | string | null
-    region?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     balance?: IntFilter<"User"> | number
     password?: StringFilter<"User"> | string
@@ -7201,11 +7314,13 @@ export namespace Prisma {
     codeExpired?: DateTimeNullableFilter<"User"> | Date | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
     status?: EnumStatusFilter<"User"> | $Enums.Status
+    provinceId?: IntNullableFilter<"User"> | number | null
     brandId?: IntNullableFilter<"User"> | number | null
     cinemaId?: IntNullableFilter<"User"> | number | null
     counterId?: IntNullableFilter<"User"> | number | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    province?: XOR<ProvincesNullableScalarRelationFilter, ProvincesWhereInput> | null
     brand?: XOR<CinemaBrandNullableScalarRelationFilter, CinemaBrandWhereInput> | null
     cinema?: XOR<CinemaNullableScalarRelationFilter, CinemaWhereInput> | null
     counter?: XOR<CounterNullableScalarRelationFilter, CounterWhereInput> | null
@@ -7214,12 +7329,12 @@ export namespace Prisma {
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
     username?: SortOrder
+    slug?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     phone?: SortOrderInput | SortOrder
     phoneVerified?: SortOrder
     fullName?: SortOrderInput | SortOrder
-    region?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
     balance?: SortOrder
     password?: SortOrder
@@ -7228,11 +7343,13 @@ export namespace Prisma {
     codeExpired?: SortOrderInput | SortOrder
     role?: SortOrder
     status?: SortOrder
+    provinceId?: SortOrderInput | SortOrder
     brandId?: SortOrderInput | SortOrder
     cinemaId?: SortOrderInput | SortOrder
     counterId?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    province?: ProvincesOrderByWithRelationInput
     brand?: CinemaBrandOrderByWithRelationInput
     cinema?: CinemaOrderByWithRelationInput
     counter?: CounterOrderByWithRelationInput
@@ -7242,6 +7359,7 @@ export namespace Prisma {
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: number
     username?: string
+    slug?: string
     email?: string
     phone?: string
     AND?: UserWhereInput | UserWhereInput[]
@@ -7250,7 +7368,6 @@ export namespace Prisma {
     emailVerified?: BoolFilter<"User"> | boolean
     phoneVerified?: BoolFilter<"User"> | boolean
     fullName?: StringNullableFilter<"User"> | string | null
-    region?: StringNullableFilter<"User"> | string | null
     avatar?: StringNullableFilter<"User"> | string | null
     balance?: IntFilter<"User"> | number
     password?: StringFilter<"User"> | string
@@ -7259,25 +7376,27 @@ export namespace Prisma {
     codeExpired?: DateTimeNullableFilter<"User"> | Date | string | null
     role?: EnumRoleFilter<"User"> | $Enums.Role
     status?: EnumStatusFilter<"User"> | $Enums.Status
+    provinceId?: IntNullableFilter<"User"> | number | null
     brandId?: IntNullableFilter<"User"> | number | null
     cinemaId?: IntNullableFilter<"User"> | number | null
     counterId?: IntNullableFilter<"User"> | number | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    province?: XOR<ProvincesNullableScalarRelationFilter, ProvincesWhereInput> | null
     brand?: XOR<CinemaBrandNullableScalarRelationFilter, CinemaBrandWhereInput> | null
     cinema?: XOR<CinemaNullableScalarRelationFilter, CinemaWhereInput> | null
     counter?: XOR<CounterNullableScalarRelationFilter, CounterWhereInput> | null
-  }, "id" | "username" | "email" | "phone">
+  }, "id" | "username" | "slug" | "email" | "phone">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     username?: SortOrder
+    slug?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     phone?: SortOrderInput | SortOrder
     phoneVerified?: SortOrder
     fullName?: SortOrderInput | SortOrder
-    region?: SortOrderInput | SortOrder
     avatar?: SortOrderInput | SortOrder
     balance?: SortOrder
     password?: SortOrder
@@ -7286,6 +7405,7 @@ export namespace Prisma {
     codeExpired?: SortOrderInput | SortOrder
     role?: SortOrder
     status?: SortOrder
+    provinceId?: SortOrderInput | SortOrder
     brandId?: SortOrderInput | SortOrder
     cinemaId?: SortOrderInput | SortOrder
     counterId?: SortOrderInput | SortOrder
@@ -7304,12 +7424,12 @@ export namespace Prisma {
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"User"> | number
     username?: StringWithAggregatesFilter<"User"> | string
+    slug?: StringWithAggregatesFilter<"User"> | string
     email?: StringWithAggregatesFilter<"User"> | string
     emailVerified?: BoolWithAggregatesFilter<"User"> | boolean
     phone?: StringNullableWithAggregatesFilter<"User"> | string | null
     phoneVerified?: BoolWithAggregatesFilter<"User"> | boolean
     fullName?: StringNullableWithAggregatesFilter<"User"> | string | null
-    region?: StringNullableWithAggregatesFilter<"User"> | string | null
     avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
     balance?: IntWithAggregatesFilter<"User"> | number
     password?: StringWithAggregatesFilter<"User"> | string
@@ -7318,6 +7438,7 @@ export namespace Prisma {
     codeExpired?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     role?: EnumRoleWithAggregatesFilter<"User"> | $Enums.Role
     status?: EnumStatusWithAggregatesFilter<"User"> | $Enums.Status
+    provinceId?: IntNullableWithAggregatesFilter<"User"> | number | null
     brandId?: IntNullableWithAggregatesFilter<"User"> | number | null
     cinemaId?: IntNullableWithAggregatesFilter<"User"> | number | null
     counterId?: IntNullableWithAggregatesFilter<"User"> | number | null
@@ -7331,6 +7452,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     cinemas?: CinemaCreateNestedManyWithoutProvinceInput
+    users?: UserCreateNestedManyWithoutProvinceInput
   }
 
   export type ProvincesUncheckedCreateInput = {
@@ -7340,6 +7462,7 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     cinemas?: CinemaUncheckedCreateNestedManyWithoutProvinceInput
+    users?: UserUncheckedCreateNestedManyWithoutProvinceInput
   }
 
   export type ProvincesUpdateInput = {
@@ -7348,6 +7471,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cinemas?: CinemaUpdateManyWithoutProvinceNestedInput
+    users?: UserUpdateManyWithoutProvinceNestedInput
   }
 
   export type ProvincesUncheckedUpdateInput = {
@@ -7357,6 +7481,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cinemas?: CinemaUncheckedUpdateManyWithoutProvinceNestedInput
+    users?: UserUncheckedUpdateManyWithoutProvinceNestedInput
   }
 
   export type ProvincesCreateManyInput = {
@@ -7554,6 +7679,8 @@ export namespace Prisma {
   export type CounterCreateInput = {
     name: string
     slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     cinema: CinemaCreateNestedOneWithoutCounterInput
     users?: UserCreateNestedManyWithoutCounterInput
   }
@@ -7563,12 +7690,16 @@ export namespace Prisma {
     name: string
     slug: string
     cinemaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutCounterInput
   }
 
   export type CounterUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cinema?: CinemaUpdateOneRequiredWithoutCounterNestedInput
     users?: UserUpdateManyWithoutCounterNestedInput
   }
@@ -7578,6 +7709,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     cinemaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutCounterNestedInput
   }
 
@@ -7586,11 +7719,15 @@ export namespace Prisma {
     name: string
     slug: string
     cinemaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type CounterUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CounterUncheckedUpdateManyInput = {
@@ -7598,16 +7735,18 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     cinemaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateInput = {
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -7618,6 +7757,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
+    province?: ProvincesCreateNestedOneWithoutUsersInput
     brand?: CinemaBrandCreateNestedOneWithoutUsersInput
     cinema?: CinemaCreateNestedOneWithoutUsersInput
     counter?: CounterCreateNestedOneWithoutUsersInput
@@ -7626,12 +7766,12 @@ export namespace Prisma {
   export type UserUncheckedCreateInput = {
     id?: number
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -7640,6 +7780,7 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    provinceId?: number | null
     brandId?: number | null
     cinemaId?: number | null
     counterId?: number | null
@@ -7649,12 +7790,12 @@ export namespace Prisma {
 
   export type UserUpdateInput = {
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -7665,6 +7806,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    province?: ProvincesUpdateOneWithoutUsersNestedInput
     brand?: CinemaBrandUpdateOneWithoutUsersNestedInput
     cinema?: CinemaUpdateOneWithoutUsersNestedInput
     counter?: CounterUpdateOneWithoutUsersNestedInput
@@ -7673,12 +7815,12 @@ export namespace Prisma {
   export type UserUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -7687,6 +7829,7 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
     brandId?: NullableIntFieldUpdateOperationsInput | number | null
     cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
     counterId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7697,12 +7840,12 @@ export namespace Prisma {
   export type UserCreateManyInput = {
     id?: number
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -7711,6 +7854,7 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    provinceId?: number | null
     brandId?: number | null
     cinemaId?: number | null
     counterId?: number | null
@@ -7720,12 +7864,12 @@ export namespace Prisma {
 
   export type UserUpdateManyMutationInput = {
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -7741,12 +7885,12 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -7755,6 +7899,7 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
     brandId?: NullableIntFieldUpdateOperationsInput | number | null
     cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
     counterId?: NullableIntFieldUpdateOperationsInput | number | null
@@ -7805,7 +7950,17 @@ export namespace Prisma {
     none?: CinemaWhereInput
   }
 
+  export type UserListRelationFilter = {
+    every?: UserWhereInput
+    some?: UserWhereInput
+    none?: UserWhereInput
+  }
+
   export type CinemaOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -7910,19 +8065,9 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
-  export type UserListRelationFilter = {
-    every?: UserWhereInput
-    some?: UserWhereInput
-    none?: UserWhereInput
-  }
-
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
-  }
-
-  export type UserOrderByRelationAggregateInput = {
-    _count?: SortOrder
   }
 
   export type CinemaBrandOrderByRelevanceInput = {
@@ -8097,6 +8242,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     cinemaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type CounterAvgOrderByAggregateInput = {
@@ -8109,6 +8256,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     cinemaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type CounterMinOrderByAggregateInput = {
@@ -8116,6 +8265,8 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     cinemaId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
   }
 
   export type CounterSumOrderByAggregateInput = {
@@ -8157,6 +8308,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
+  export type ProvincesNullableScalarRelationFilter = {
+    is?: ProvincesWhereInput | null
+    isNot?: ProvincesWhereInput | null
+  }
+
   export type CinemaBrandNullableScalarRelationFilter = {
     is?: CinemaBrandWhereInput | null
     isNot?: CinemaBrandWhereInput | null
@@ -8181,12 +8337,12 @@ export namespace Prisma {
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    slug?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     phone?: SortOrder
     phoneVerified?: SortOrder
     fullName?: SortOrder
-    region?: SortOrder
     avatar?: SortOrder
     balance?: SortOrder
     password?: SortOrder
@@ -8195,6 +8351,7 @@ export namespace Prisma {
     codeExpired?: SortOrder
     role?: SortOrder
     status?: SortOrder
+    provinceId?: SortOrder
     brandId?: SortOrder
     cinemaId?: SortOrder
     counterId?: SortOrder
@@ -8205,6 +8362,7 @@ export namespace Prisma {
   export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
     balance?: SortOrder
+    provinceId?: SortOrder
     brandId?: SortOrder
     cinemaId?: SortOrder
     counterId?: SortOrder
@@ -8213,12 +8371,12 @@ export namespace Prisma {
   export type UserMaxOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    slug?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     phone?: SortOrder
     phoneVerified?: SortOrder
     fullName?: SortOrder
-    region?: SortOrder
     avatar?: SortOrder
     balance?: SortOrder
     password?: SortOrder
@@ -8227,6 +8385,7 @@ export namespace Prisma {
     codeExpired?: SortOrder
     role?: SortOrder
     status?: SortOrder
+    provinceId?: SortOrder
     brandId?: SortOrder
     cinemaId?: SortOrder
     counterId?: SortOrder
@@ -8237,12 +8396,12 @@ export namespace Prisma {
   export type UserMinOrderByAggregateInput = {
     id?: SortOrder
     username?: SortOrder
+    slug?: SortOrder
     email?: SortOrder
     emailVerified?: SortOrder
     phone?: SortOrder
     phoneVerified?: SortOrder
     fullName?: SortOrder
-    region?: SortOrder
     avatar?: SortOrder
     balance?: SortOrder
     password?: SortOrder
@@ -8251,6 +8410,7 @@ export namespace Prisma {
     codeExpired?: SortOrder
     role?: SortOrder
     status?: SortOrder
+    provinceId?: SortOrder
     brandId?: SortOrder
     cinemaId?: SortOrder
     counterId?: SortOrder
@@ -8261,6 +8421,7 @@ export namespace Prisma {
   export type UserSumOrderByAggregateInput = {
     id?: SortOrder
     balance?: SortOrder
+    provinceId?: SortOrder
     brandId?: SortOrder
     cinemaId?: SortOrder
     counterId?: SortOrder
@@ -8321,11 +8482,25 @@ export namespace Prisma {
     connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
   }
 
+  export type UserCreateNestedManyWithoutProvinceInput = {
+    create?: XOR<UserCreateWithoutProvinceInput, UserUncheckedCreateWithoutProvinceInput> | UserCreateWithoutProvinceInput[] | UserUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutProvinceInput | UserCreateOrConnectWithoutProvinceInput[]
+    createMany?: UserCreateManyProvinceInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+  }
+
   export type CinemaUncheckedCreateNestedManyWithoutProvinceInput = {
     create?: XOR<CinemaCreateWithoutProvinceInput, CinemaUncheckedCreateWithoutProvinceInput> | CinemaCreateWithoutProvinceInput[] | CinemaUncheckedCreateWithoutProvinceInput[]
     connectOrCreate?: CinemaCreateOrConnectWithoutProvinceInput | CinemaCreateOrConnectWithoutProvinceInput[]
     createMany?: CinemaCreateManyProvinceInputEnvelope
     connect?: CinemaWhereUniqueInput | CinemaWhereUniqueInput[]
+  }
+
+  export type UserUncheckedCreateNestedManyWithoutProvinceInput = {
+    create?: XOR<UserCreateWithoutProvinceInput, UserUncheckedCreateWithoutProvinceInput> | UserCreateWithoutProvinceInput[] | UserUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutProvinceInput | UserCreateOrConnectWithoutProvinceInput[]
+    createMany?: UserCreateManyProvinceInputEnvelope
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -8350,6 +8525,20 @@ export namespace Prisma {
     deleteMany?: CinemaScalarWhereInput | CinemaScalarWhereInput[]
   }
 
+  export type UserUpdateManyWithoutProvinceNestedInput = {
+    create?: XOR<UserCreateWithoutProvinceInput, UserUncheckedCreateWithoutProvinceInput> | UserCreateWithoutProvinceInput[] | UserUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutProvinceInput | UserCreateOrConnectWithoutProvinceInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutProvinceInput | UserUpsertWithWhereUniqueWithoutProvinceInput[]
+    createMany?: UserCreateManyProvinceInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutProvinceInput | UserUpdateWithWhereUniqueWithoutProvinceInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutProvinceInput | UserUpdateManyWithWhereWithoutProvinceInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -8370,6 +8559,20 @@ export namespace Prisma {
     update?: CinemaUpdateWithWhereUniqueWithoutProvinceInput | CinemaUpdateWithWhereUniqueWithoutProvinceInput[]
     updateMany?: CinemaUpdateManyWithWhereWithoutProvinceInput | CinemaUpdateManyWithWhereWithoutProvinceInput[]
     deleteMany?: CinemaScalarWhereInput | CinemaScalarWhereInput[]
+  }
+
+  export type UserUncheckedUpdateManyWithoutProvinceNestedInput = {
+    create?: XOR<UserCreateWithoutProvinceInput, UserUncheckedCreateWithoutProvinceInput> | UserCreateWithoutProvinceInput[] | UserUncheckedCreateWithoutProvinceInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutProvinceInput | UserCreateOrConnectWithoutProvinceInput[]
+    upsert?: UserUpsertWithWhereUniqueWithoutProvinceInput | UserUpsertWithWhereUniqueWithoutProvinceInput[]
+    createMany?: UserCreateManyProvinceInputEnvelope
+    set?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    disconnect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    delete?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
+    update?: UserUpdateWithWhereUniqueWithoutProvinceInput | UserUpdateWithWhereUniqueWithoutProvinceInput[]
+    updateMany?: UserUpdateManyWithWhereWithoutProvinceInput | UserUpdateManyWithWhereWithoutProvinceInput[]
+    deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
   export type UserCreateNestedManyWithoutBrandInput = {
@@ -8632,6 +8835,12 @@ export namespace Prisma {
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
   }
 
+  export type ProvincesCreateNestedOneWithoutUsersInput = {
+    create?: XOR<ProvincesCreateWithoutUsersInput, ProvincesUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: ProvincesCreateOrConnectWithoutUsersInput
+    connect?: ProvincesWhereUniqueInput
+  }
+
   export type CinemaBrandCreateNestedOneWithoutUsersInput = {
     create?: XOR<CinemaBrandCreateWithoutUsersInput, CinemaBrandUncheckedCreateWithoutUsersInput>
     connectOrCreate?: CinemaBrandCreateOrConnectWithoutUsersInput
@@ -8660,6 +8869,16 @@ export namespace Prisma {
 
   export type EnumRoleFieldUpdateOperationsInput = {
     set?: $Enums.Role
+  }
+
+  export type ProvincesUpdateOneWithoutUsersNestedInput = {
+    create?: XOR<ProvincesCreateWithoutUsersInput, ProvincesUncheckedCreateWithoutUsersInput>
+    connectOrCreate?: ProvincesCreateOrConnectWithoutUsersInput
+    upsert?: ProvincesUpsertWithoutUsersInput
+    disconnect?: ProvincesWhereInput | boolean
+    delete?: ProvincesWhereInput | boolean
+    connect?: ProvincesWhereUniqueInput
+    update?: XOR<XOR<ProvincesUpdateToOneWithWhereWithoutUsersInput, ProvincesUpdateWithoutUsersInput>, ProvincesUncheckedUpdateWithoutUsersInput>
   }
 
   export type CinemaBrandUpdateOneWithoutUsersNestedInput = {
@@ -8978,6 +9197,63 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type UserCreateWithoutProvinceInput = {
+    username: string
+    slug: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    brand?: CinemaBrandCreateNestedOneWithoutUsersInput
+    cinema?: CinemaCreateNestedOneWithoutUsersInput
+    counter?: CounterCreateNestedOneWithoutUsersInput
+  }
+
+  export type UserUncheckedCreateWithoutProvinceInput = {
+    id?: number
+    username: string
+    slug: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    brandId?: number | null
+    cinemaId?: number | null
+    counterId?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutProvinceInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutProvinceInput, UserUncheckedCreateWithoutProvinceInput>
+  }
+
+  export type UserCreateManyProvinceInputEnvelope = {
+    data: UserCreateManyProvinceInput | UserCreateManyProvinceInput[]
+    skipDuplicates?: boolean
+  }
+
   export type CinemaUpsertWithWhereUniqueWithoutProvinceInput = {
     where: CinemaWhereUniqueInput
     update: XOR<CinemaUpdateWithoutProvinceInput, CinemaUncheckedUpdateWithoutProvinceInput>
@@ -9011,14 +9287,58 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"Cinema"> | Date | string
   }
 
+  export type UserUpsertWithWhereUniqueWithoutProvinceInput = {
+    where: UserWhereUniqueInput
+    update: XOR<UserUpdateWithoutProvinceInput, UserUncheckedUpdateWithoutProvinceInput>
+    create: XOR<UserCreateWithoutProvinceInput, UserUncheckedCreateWithoutProvinceInput>
+  }
+
+  export type UserUpdateWithWhereUniqueWithoutProvinceInput = {
+    where: UserWhereUniqueInput
+    data: XOR<UserUpdateWithoutProvinceInput, UserUncheckedUpdateWithoutProvinceInput>
+  }
+
+  export type UserUpdateManyWithWhereWithoutProvinceInput = {
+    where: UserScalarWhereInput
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutProvinceInput>
+  }
+
+  export type UserScalarWhereInput = {
+    AND?: UserScalarWhereInput | UserScalarWhereInput[]
+    OR?: UserScalarWhereInput[]
+    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
+    id?: IntFilter<"User"> | number
+    username?: StringFilter<"User"> | string
+    slug?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    emailVerified?: BoolFilter<"User"> | boolean
+    phone?: StringNullableFilter<"User"> | string | null
+    phoneVerified?: BoolFilter<"User"> | boolean
+    fullName?: StringNullableFilter<"User"> | string | null
+    avatar?: StringNullableFilter<"User"> | string | null
+    balance?: IntFilter<"User"> | number
+    password?: StringFilter<"User"> | string
+    refreshToken?: StringNullableFilter<"User"> | string | null
+    codeId?: StringNullableFilter<"User"> | string | null
+    codeExpired?: DateTimeNullableFilter<"User"> | Date | string | null
+    role?: EnumRoleFilter<"User"> | $Enums.Role
+    status?: EnumStatusFilter<"User"> | $Enums.Status
+    provinceId?: IntNullableFilter<"User"> | number | null
+    brandId?: IntNullableFilter<"User"> | number | null
+    cinemaId?: IntNullableFilter<"User"> | number | null
+    counterId?: IntNullableFilter<"User"> | number | null
+    createdAt?: DateTimeFilter<"User"> | Date | string
+    updatedAt?: DateTimeFilter<"User"> | Date | string
+  }
+
   export type UserCreateWithoutBrandInput = {
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -9029,6 +9349,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
+    province?: ProvincesCreateNestedOneWithoutUsersInput
     cinema?: CinemaCreateNestedOneWithoutUsersInput
     counter?: CounterCreateNestedOneWithoutUsersInput
   }
@@ -9036,12 +9357,12 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutBrandInput = {
     id?: number
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -9050,6 +9371,7 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    provinceId?: number | null
     cinemaId?: number | null
     counterId?: number | null
     createdAt?: Date | string
@@ -9121,33 +9443,6 @@ export namespace Prisma {
     data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutBrandInput>
   }
 
-  export type UserScalarWhereInput = {
-    AND?: UserScalarWhereInput | UserScalarWhereInput[]
-    OR?: UserScalarWhereInput[]
-    NOT?: UserScalarWhereInput | UserScalarWhereInput[]
-    id?: IntFilter<"User"> | number
-    username?: StringFilter<"User"> | string
-    email?: StringFilter<"User"> | string
-    emailVerified?: BoolFilter<"User"> | boolean
-    phone?: StringNullableFilter<"User"> | string | null
-    phoneVerified?: BoolFilter<"User"> | boolean
-    fullName?: StringNullableFilter<"User"> | string | null
-    region?: StringNullableFilter<"User"> | string | null
-    avatar?: StringNullableFilter<"User"> | string | null
-    balance?: IntFilter<"User"> | number
-    password?: StringFilter<"User"> | string
-    refreshToken?: StringNullableFilter<"User"> | string | null
-    codeId?: StringNullableFilter<"User"> | string | null
-    codeExpired?: DateTimeNullableFilter<"User"> | Date | string | null
-    role?: EnumRoleFilter<"User"> | $Enums.Role
-    status?: EnumStatusFilter<"User"> | $Enums.Status
-    brandId?: IntNullableFilter<"User"> | number | null
-    cinemaId?: IntNullableFilter<"User"> | number | null
-    counterId?: IntNullableFilter<"User"> | number | null
-    createdAt?: DateTimeFilter<"User"> | Date | string
-    updatedAt?: DateTimeFilter<"User"> | Date | string
-  }
-
   export type CinemaUpsertWithWhereUniqueWithoutBrandInput = {
     where: CinemaWhereUniqueInput
     update: XOR<CinemaUpdateWithoutBrandInput, CinemaUncheckedUpdateWithoutBrandInput>
@@ -9193,6 +9488,7 @@ export namespace Prisma {
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    users?: UserCreateNestedManyWithoutProvinceInput
   }
 
   export type ProvincesUncheckedCreateWithoutCinemasInput = {
@@ -9201,6 +9497,7 @@ export namespace Prisma {
     slug: string
     createdAt?: Date | string
     updatedAt?: Date | string
+    users?: UserUncheckedCreateNestedManyWithoutProvinceInput
   }
 
   export type ProvincesCreateOrConnectWithoutCinemasInput = {
@@ -9210,12 +9507,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutCinemaInput = {
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -9226,6 +9523,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
+    province?: ProvincesCreateNestedOneWithoutUsersInput
     brand?: CinemaBrandCreateNestedOneWithoutUsersInput
     counter?: CounterCreateNestedOneWithoutUsersInput
   }
@@ -9233,12 +9531,12 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutCinemaInput = {
     id?: number
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -9247,6 +9545,7 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    provinceId?: number | null
     brandId?: number | null
     counterId?: number | null
     createdAt?: Date | string
@@ -9266,6 +9565,8 @@ export namespace Prisma {
   export type CounterCreateWithoutCinemaInput = {
     name: string
     slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     users?: UserCreateNestedManyWithoutCounterInput
   }
 
@@ -9273,6 +9574,8 @@ export namespace Prisma {
     id?: number
     name: string
     slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     users?: UserUncheckedCreateNestedManyWithoutCounterInput
   }
 
@@ -9332,6 +9635,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUpdateManyWithoutProvinceNestedInput
   }
 
   export type ProvincesUncheckedUpdateWithoutCinemasInput = {
@@ -9340,6 +9644,7 @@ export namespace Prisma {
     slug?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    users?: UserUncheckedUpdateManyWithoutProvinceNestedInput
   }
 
   export type UserUpsertWithWhereUniqueWithoutCinemaInput = {
@@ -9382,6 +9687,8 @@ export namespace Prisma {
     name?: StringFilter<"Counter"> | string
     slug?: StringFilter<"Counter"> | string
     cinemaId?: IntFilter<"Counter"> | number
+    createdAt?: DateTimeFilter<"Counter"> | Date | string
+    updatedAt?: DateTimeFilter<"Counter"> | Date | string
   }
 
   export type CinemaCreateWithoutCounterInput = {
@@ -9420,12 +9727,12 @@ export namespace Prisma {
 
   export type UserCreateWithoutCounterInput = {
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -9436,6 +9743,7 @@ export namespace Prisma {
     status?: $Enums.Status
     createdAt?: Date | string
     updatedAt?: Date | string
+    province?: ProvincesCreateNestedOneWithoutUsersInput
     brand?: CinemaBrandCreateNestedOneWithoutUsersInput
     cinema?: CinemaCreateNestedOneWithoutUsersInput
   }
@@ -9443,12 +9751,12 @@ export namespace Prisma {
   export type UserUncheckedCreateWithoutCounterInput = {
     id?: number
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -9457,6 +9765,7 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    provinceId?: number | null
     brandId?: number | null
     cinemaId?: number | null
     createdAt?: Date | string
@@ -9529,6 +9838,28 @@ export namespace Prisma {
     data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyWithoutCounterInput>
   }
 
+  export type ProvincesCreateWithoutUsersInput = {
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    cinemas?: CinemaCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvincesUncheckedCreateWithoutUsersInput = {
+    id?: number
+    name: string
+    slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    cinemas?: CinemaUncheckedCreateNestedManyWithoutProvinceInput
+  }
+
+  export type ProvincesCreateOrConnectWithoutUsersInput = {
+    where: ProvincesWhereUniqueInput
+    create: XOR<ProvincesCreateWithoutUsersInput, ProvincesUncheckedCreateWithoutUsersInput>
+  }
+
   export type CinemaBrandCreateWithoutUsersInput = {
     name: string
     slug: string
@@ -9590,6 +9921,8 @@ export namespace Prisma {
   export type CounterCreateWithoutUsersInput = {
     name: string
     slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
     cinema: CinemaCreateNestedOneWithoutCounterInput
   }
 
@@ -9598,11 +9931,41 @@ export namespace Prisma {
     name: string
     slug: string
     cinemaId: number
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type CounterCreateOrConnectWithoutUsersInput = {
     where: CounterWhereUniqueInput
     create: XOR<CounterCreateWithoutUsersInput, CounterUncheckedCreateWithoutUsersInput>
+  }
+
+  export type ProvincesUpsertWithoutUsersInput = {
+    update: XOR<ProvincesUpdateWithoutUsersInput, ProvincesUncheckedUpdateWithoutUsersInput>
+    create: XOR<ProvincesCreateWithoutUsersInput, ProvincesUncheckedCreateWithoutUsersInput>
+    where?: ProvincesWhereInput
+  }
+
+  export type ProvincesUpdateToOneWithWhereWithoutUsersInput = {
+    where?: ProvincesWhereInput
+    data: XOR<ProvincesUpdateWithoutUsersInput, ProvincesUncheckedUpdateWithoutUsersInput>
+  }
+
+  export type ProvincesUpdateWithoutUsersInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cinemas?: CinemaUpdateManyWithoutProvinceNestedInput
+  }
+
+  export type ProvincesUncheckedUpdateWithoutUsersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    cinemas?: CinemaUncheckedUpdateManyWithoutProvinceNestedInput
   }
 
   export type CinemaBrandUpsertWithoutUsersInput = {
@@ -9689,6 +10052,8 @@ export namespace Prisma {
   export type CounterUpdateWithoutUsersInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     cinema?: CinemaUpdateOneRequiredWithoutCounterNestedInput
   }
 
@@ -9697,6 +10062,8 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
     cinemaId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type CinemaCreateManyProvinceInput = {
@@ -9708,6 +10075,30 @@ export namespace Prisma {
     mapLink: string
     brandId: number
     description: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateManyProvinceInput = {
+    id?: number
+    username: string
+    slug: string
+    email: string
+    emailVerified?: boolean
+    phone?: string | null
+    phoneVerified?: boolean
+    fullName?: string | null
+    avatar?: string | null
+    balance?: number
+    password: string
+    refreshToken?: string | null
+    codeId?: string | null
+    codeExpired?: Date | string | null
+    role?: $Enums.Role
+    status?: $Enums.Status
+    brandId?: number | null
+    cinemaId?: number | null
+    counterId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -9754,15 +10145,86 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type UserUpdateWithoutProvinceInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    brand?: CinemaBrandUpdateOneWithoutUsersNestedInput
+    cinema?: CinemaUpdateOneWithoutUsersNestedInput
+    counter?: CounterUpdateOneWithoutUsersNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutProvinceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    brandId?: NullableIntFieldUpdateOperationsInput | number | null
+    cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
+    counterId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyWithoutProvinceInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: BoolFieldUpdateOperationsInput | boolean
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    phoneVerified?: BoolFieldUpdateOperationsInput | boolean
+    fullName?: NullableStringFieldUpdateOperationsInput | string | null
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    balance?: IntFieldUpdateOperationsInput | number
+    password?: StringFieldUpdateOperationsInput | string
+    refreshToken?: NullableStringFieldUpdateOperationsInput | string | null
+    codeId?: NullableStringFieldUpdateOperationsInput | string | null
+    codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
+    status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    brandId?: NullableIntFieldUpdateOperationsInput | number | null
+    cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
+    counterId?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type UserCreateManyBrandInput = {
     id?: number
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -9771,6 +10233,7 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    provinceId?: number | null
     cinemaId?: number | null
     counterId?: number | null
     createdAt?: Date | string
@@ -9792,12 +10255,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutBrandInput = {
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -9808,6 +10271,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    province?: ProvincesUpdateOneWithoutUsersNestedInput
     cinema?: CinemaUpdateOneWithoutUsersNestedInput
     counter?: CounterUpdateOneWithoutUsersNestedInput
   }
@@ -9815,12 +10279,12 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutBrandInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -9829,6 +10293,7 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
     cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
     counterId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9838,12 +10303,12 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyWithoutBrandInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -9852,6 +10317,7 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
     cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
     counterId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9903,12 +10369,12 @@ export namespace Prisma {
   export type UserCreateManyCinemaInput = {
     id?: number
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -9917,6 +10383,7 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    provinceId?: number | null
     brandId?: number | null
     counterId?: number | null
     createdAt?: Date | string
@@ -9927,16 +10394,18 @@ export namespace Prisma {
     id?: number
     name: string
     slug: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
   }
 
   export type UserUpdateWithoutCinemaInput = {
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -9947,6 +10416,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    province?: ProvincesUpdateOneWithoutUsersNestedInput
     brand?: CinemaBrandUpdateOneWithoutUsersNestedInput
     counter?: CounterUpdateOneWithoutUsersNestedInput
   }
@@ -9954,12 +10424,12 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutCinemaInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -9968,6 +10438,7 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
     brandId?: NullableIntFieldUpdateOperationsInput | number | null
     counterId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9977,12 +10448,12 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyWithoutCinemaInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -9991,6 +10462,7 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
     brandId?: NullableIntFieldUpdateOperationsInput | number | null
     counterId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10000,6 +10472,8 @@ export namespace Prisma {
   export type CounterUpdateWithoutCinemaInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUpdateManyWithoutCounterNestedInput
   }
 
@@ -10007,6 +10481,8 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     users?: UserUncheckedUpdateManyWithoutCounterNestedInput
   }
 
@@ -10014,17 +10490,19 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateManyCounterInput = {
     id?: number
     username: string
+    slug: string
     email: string
     emailVerified?: boolean
     phone?: string | null
     phoneVerified?: boolean
     fullName?: string | null
-    region?: string | null
     avatar?: string | null
     balance?: number
     password: string
@@ -10033,6 +10511,7 @@ export namespace Prisma {
     codeExpired?: Date | string | null
     role?: $Enums.Role
     status?: $Enums.Status
+    provinceId?: number | null
     brandId?: number | null
     cinemaId?: number | null
     createdAt?: Date | string
@@ -10041,12 +10520,12 @@ export namespace Prisma {
 
   export type UserUpdateWithoutCounterInput = {
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -10057,6 +10536,7 @@ export namespace Prisma {
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    province?: ProvincesUpdateOneWithoutUsersNestedInput
     brand?: CinemaBrandUpdateOneWithoutUsersNestedInput
     cinema?: CinemaUpdateOneWithoutUsersNestedInput
   }
@@ -10064,12 +10544,12 @@ export namespace Prisma {
   export type UserUncheckedUpdateWithoutCounterInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -10078,6 +10558,7 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
     brandId?: NullableIntFieldUpdateOperationsInput | number | null
     cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10087,12 +10568,12 @@ export namespace Prisma {
   export type UserUncheckedUpdateManyWithoutCounterInput = {
     id?: IntFieldUpdateOperationsInput | number
     username?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
     email?: StringFieldUpdateOperationsInput | string
     emailVerified?: BoolFieldUpdateOperationsInput | boolean
     phone?: NullableStringFieldUpdateOperationsInput | string | null
     phoneVerified?: BoolFieldUpdateOperationsInput | boolean
     fullName?: NullableStringFieldUpdateOperationsInput | string | null
-    region?: NullableStringFieldUpdateOperationsInput | string | null
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     balance?: IntFieldUpdateOperationsInput | number
     password?: StringFieldUpdateOperationsInput | string
@@ -10101,6 +10582,7 @@ export namespace Prisma {
     codeExpired?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     role?: EnumRoleFieldUpdateOperationsInput | $Enums.Role
     status?: EnumStatusFieldUpdateOperationsInput | $Enums.Status
+    provinceId?: NullableIntFieldUpdateOperationsInput | number | null
     brandId?: NullableIntFieldUpdateOperationsInput | number | null
     cinemaId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
