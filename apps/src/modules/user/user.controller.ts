@@ -16,6 +16,9 @@ import { JwtAuthGuard } from 'libs/common/guards/jwt-auth.guard';
 import { RolesGuard } from 'libs/common/guards/roles.guard';
 import { Roles } from '@libs/common/decorators/roles.decorator';
 import { UserService } from '@/modules/user/user.service';
+import { UploadedFile, UseInterceptors } from '@nestjs/common';
+import { CloudinaryService } from '@/modules/upload/cloudinary.service';
+import {  SingleImageUploadInterceptor } from '@libs/common/interceptors/upload-image.interceptor';
 import {
   CreateBrandManagerDto,
   CreateCinemaManagerDto,
@@ -27,7 +30,10 @@ import {
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(
+    private readonly userService: UserService,
+    private cloudinaryService: CloudinaryService,
+  ) {}
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
@@ -37,12 +43,17 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Post('create-brand-manager')
+  @UseInterceptors(SingleImageUploadInterceptor('file'))
   @Roles(Role.SUPER_ADMIN)
   @HttpCode(HttpStatus.CREATED)
   async createBrandManager(
     @Body() createBrandManagerDto: CreateBrandManagerDto,
+    @UploadedFile() file: Express.Multer.File
   ) {
-    return await this.userService.createBrandManagerUser(createBrandManagerDto);
+    const uploaded = await this.cloudinaryService.uploadFile(file);
+    createBrandManagerDto.logo = uploaded.secure_url;
+
+    return this.userService.createBrandManagerUser(createBrandManagerDto);
   }
 
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -143,12 +154,17 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Patch('/me')
+  @UseInterceptors(SingleImageUploadInterceptor('file'))
   @Roles(Role.USER, Role.REVIEWER)
   @HttpCode(HttpStatus.OK)
   async updateUser(
     @Body() updateUserDto: UpdateUserDto,
     @CurrentUser() currentUser: User,
+    @UploadedFile() file: Express.Multer.File
   ) {
+    const uploaded = await this.cloudinaryService.uploadFile(file);
+    updateUserDto.avatar = uploaded.secure_url;
+
     return await this.userService.updateUser(updateUserDto, currentUser);
   }
 
@@ -156,10 +172,7 @@ export class UserController {
   @Get(':slug')
   @Roles(Role.USER, Role.REVIEWER)
   @HttpCode(HttpStatus.OK)
-  async findUserByUsername(
-    @Param('slug') slug: string,
-  ) {
+  async findUserByUsername(@Param('slug') slug: string) {
     return await this.userService.findUserByUsername(slug);
   }
-
 }
